@@ -400,6 +400,86 @@ nav .wrap.topbar{position:relative;justify-content:center;overflow:visible}
   .fs-row input[type=range]{height:8px}
   .fs-row input[type=range]::-webkit-slider-thumb{width:28px;height:28px}
 }
+
+/* ===== 设置面板半透明磨砂 ===== */
+#settingsPanel{background:rgba(255,255,255,.78);backdrop-filter:blur(24px) saturate(1.6);-webkit-backdrop-filter:blur(24px) saturate(1.6)}
+#settingsPanel .sp-head{background:rgba(255,255,255,.5)}
+
+/* ===== 字号缩放：覆盖全部文本，不影响布局与模块尺寸 ===== */
+:root{--fscale:1}
+body{font-size:calc(15px*var(--fscale))}
+.brand{font-size:calc(15px*var(--fscale))}
+.navlink{font-size:calc(13.5px*var(--fscale))}
+h1{font-size:calc(clamp(34px,6vw,58px)*var(--fscale))}
+.hero p.sub{font-size:calc(16px*var(--fscale))}
+.stat b{font-size:calc(24px*var(--fscale))}
+.stat span{font-size:calc(12.5px*var(--fscale))}
+.btn{font-size:calc(15px*var(--fscale))}
+.sec-num{font-size:calc(13px*var(--fscale))}
+h2{font-size:calc(clamp(24px,3.6vw,34px)*var(--fscale))}
+h3{font-size:calc(19px*var(--fscale))}
+h4{font-size:calc(15.5px*var(--fscale))}
+.tag{font-size:calc(11.5px*var(--fscale))}
+.callout{font-size:calc(14px*var(--fscale))}
+.co-title{font-size:calc(13.5px*var(--fscale))}
+table{font-size:calc(13.5px*var(--fscale))}
+.depth{font-size:calc(11px*var(--fscale))}
+.acc-head{font-size:calc(15.5px*var(--fscale))}
+.acc-head .ico{font-size:calc(17px*var(--fscale))}
+.acc-head .chev{font-size:calc(13px*var(--fscale))}
+.acc-body-in{font-size:calc(14px*var(--fscale))}
+.tab{font-size:calc(13.5px*var(--fscale))}
+.quiz .q{font-size:calc(16.5px*var(--fscale))}
+.quiz .opt{font-size:calc(14.5px*var(--fscale))}
+.quiz .verdict{font-size:calc(26px*var(--fscale))}
+.quiz .why{font-size:calc(14px*var(--fscale))}
+.quiz .restart{font-size:calc(13px*var(--fscale))}
+.quiz .crumb{font-size:calc(12.5px*var(--fscale))}
+.calc h4{font-size:calc(17px*var(--fscale))}
+.calc label{font-size:calc(13.5px*var(--fscale))}
+.calc .out b{font-size:calc(26px*var(--fscale))}
+.calc .out span{font-size:calc(12px*var(--fscale))}
+.calc .tip{font-size:calc(12.5px*var(--fscale))}
+.qcard .q-head{font-size:calc(15px*var(--fscale))}
+.qcard .q-head .chev{font-size:calc(13px*var(--fscale))}
+.qcard .ans-in{font-size:calc(14px*var(--fscale))}
+.step::before{font-size:calc(15px*var(--fscale))}
+.step b{font-size:calc(14.5px*var(--fscale))}
+.step span{font-size:calc(13.5px*var(--fscale))}
+.tl-item .tl-tag{font-size:calc(12px*var(--fscale))}
+.tl-item p{font-size:calc(13.5px*var(--fscale))}
+.check-item .box{font-size:calc(13px*var(--fscale))}
+.check-item .txt{font-size:calc(14px*var(--fscale))}
+.check-item .wk{font-size:calc(11.5px*var(--fscale))}
+.progress-num{font-size:calc(18px*var(--fscale))}
+.fc .front .term{font-size:calc(18px*var(--fscale))}
+.fc .front .hint{font-size:calc(12px*var(--fscale))}
+.fc .back{font-size:calc(13px*var(--fscale))}
+.co-card .co-name{font-size:calc(20px*var(--fscale))}
+.co-card dl{font-size:calc(14px*var(--fscale))}
+footer{font-size:calc(13px*var(--fscale))}
+#toTop{font-size:calc(18px*var(--fscale))}
+.ios-btn{font-size:calc(13.5px*var(--fscale))}
+.toc-head b{font-size:calc(17px*var(--fscale))}
+.toc-head small{font-size:calc(11px*var(--fscale))}
+.toc-close{font-size:calc(16px*var(--fscale))}
+.toclink .num{font-size:calc(12px*var(--fscale))}
+.toclink .tt{font-size:calc(14.5px*var(--fscale))}
+.toclink .arrow{font-size:calc(12px*var(--fscale))}
+.toc-foot{font-size:calc(12.5px*var(--fscale))}
+.sp-head b{font-size:calc(17px*var(--fscale))}
+.sp-close{font-size:calc(16px*var(--fscale))}
+.sp-sec>h5{font-size:calc(13px*var(--fscale))}
+.swatch span{font-size:calc(13.5px*var(--fscale))}
+.swatch .ck{font-size:calc(14px*var(--fscale))}
+.switch-row .lbl{font-size:calc(14px*var(--fscale))}
+.switch-row .lbl small{font-size:calc(12px*var(--fscale))}
+.sp-reset{font-size:calc(13.5px*var(--fscale))}
+.fs-a.small{font-size:calc(13px*var(--fscale))}
+.fs-a.large{font-size:calc(21px*var(--fscale))}
+.fs-meta span{font-size:calc(12.5px*var(--fscale))}
+[style*="font-size:13.5px"]{font-size:calc(13.5px*var(--fscale))!important}
+[style*="font-size:14px"]{font-size:calc(14px*var(--fscale))!important}
 </style>
 </head>
 <body>
@@ -440,7 +520,6 @@ nav .wrap.topbar{position:relative;justify-content:center;overflow:visible}
 <header class="hero">
   <div class="dots"></div><div class="glow"></div>
   <div class="wrap">
-    <span class="kicker"><span class="pulse"></span>面试官视角优化版 · 交互学习指南</span>
     <h1>AI产品经理<br><span class="grad">面试学习指南</span></h1>
     <p class="sub">基于字节跳动、智谱、Kimi（月之暗面）、腾讯、阿里等头部企业岗位要求<br>面向转行/转岗候选人 —— 懂技术边界 · 能做产品判断 · 会算商业账</p>
     <div class="stats">
@@ -1138,7 +1217,8 @@ const rootEl=document.documentElement;
 function fontLabel(v){return v.toFixed(1)+'px'+(v===15?' · 标准':v<15?' · 偏小':' · 偏大');}
 function applyPrefs(){
   rootEl.dataset.theme=prefs.theme;
-  document.body.style.zoom=(prefs.font/15);
+  document.body.style.removeProperty('zoom');
+  rootEl.style.setProperty('--fscale',(prefs.font/15));
   const fr=$('#fontRange'); if(fr)fr.value=prefs.font;
   const fv=$('#fontVal'); if(fv)fv.textContent=fontLabel(prefs.font);
   rootEl.dataset.motion=prefs.motion;

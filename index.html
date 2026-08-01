@@ -456,6 +456,10 @@ table{font-size:calc(13.5px*var(--fscale))}
 .fc .front .term{font-size:calc(18px*var(--fscale))}
 .fc .front .hint{font-size:calc(12px*var(--fscale))}
 .fc .back{font-size:calc(13px*var(--fscale))}
+/* 闪卡背面统一版式：加粗中文名词 + 概念解释 */
+.fc .back{justify-content:flex-start;align-items:flex-start;text-align:left;padding:20px}
+.fc .back .cn{font-size:calc(15.5px*var(--fscale));font-weight:800;color:var(--accent-light);margin-bottom:8px;letter-spacing:.5px}
+.fc .back p{font-size:calc(12.5px*var(--fscale));line-height:1.75}
 .co-card .co-name{font-size:calc(20px*var(--fscale))}
 .co-card dl{font-size:calc(14px*var(--fscale))}
 footer{font-size:calc(13px*var(--fscale))}
@@ -1005,14 +1009,14 @@ const QUIZ=[
 ];
 
 const FLASH=[
- ["Transformer","基于<b>自注意力机制</b>的序列建模架构：通过 Query-Key-Value 计算词元间的相关性权重，实现并行化训练与长程依赖建模，是当代大模型的统一基座"],
- ["RLHF","基于人类反馈的强化学习：以人工偏好数据训练奖励模型，再用 PPO 等算法优化策略模型，使输出对齐人类偏好。DPO 省去奖励模型，直接在偏好对上做对比优化，更稳定、成本更低"],
- ["RAG","检索增强生成：知识库经切分、向量化后，按语义召回相关片段注入上下文，让模型基于外部知识作答。解决<b>知识时效、私有数据接入、答案可溯源</b>三大问题"],
- ["幻觉","模型按概率分布逐词生成、缺乏事实核查机制，会输出看似合理但与事实不符的内容。这是生成式架构的<b>内生属性</b>，可用RAG、引用溯源等手段缓解，但无法根除"],
- ["Token","模型处理文本的最小语义单元（子词切分），是计费与上下文度量的基本单位。中文场景1个汉字约合1–2个Token；<b>输入与输出分开计价</b>，输出单价通常更高"],
- ["TTFT / TPS","TTFT（首Token延迟）衡量系统响应速度，TPS（每秒生成Token数）决定输出流畅度，二者是LLM推理服务的核心延迟指标。优化手段：KV Cache、投机采样、连续批处理"],
- ["GSB评测","Good / Same / Bad 对比评测：标注员对新旧模型的匿名输出做盲评，统计胜/平/负分布，是验证模型迭代是否真正变好的<b>主流人工评测范式</b>"],
- ["数据闭环","将线上用户行为信号（点赞、点踩、采纳、改写）系统化回流为评测集与训练数据，驱动模型持续迭代，形成「使用越多、效果越好」的<b>数据飞轮</b>，是AI产品的核心壁垒"]
+ ["Transformer","转换器","基于<b>自注意力机制</b>的序列建模架构：通过 Query-Key-Value 计算词元间的相关性权重，实现并行化训练与长程依赖建模，是当代大模型的统一基座"],
+ ["RLHF","人类反馈强化学习","以人工偏好数据训练奖励模型，再用 PPO 等算法优化策略模型，使输出对齐人类偏好。DPO 省去奖励模型，直接在偏好对上做对比优化，更稳定、成本更低"],
+ ["RAG","检索增强生成","知识库经切分、向量化后，按语义召回相关片段注入上下文，让模型基于外部知识作答。解决<b>知识时效、私有数据接入、答案可溯源</b>三大问题"],
+ ["幻觉","幻觉（Hallucination）","模型按概率分布逐词生成、缺乏事实核查机制，会输出看似合理但与事实不符的内容。这是生成式架构的<b>内生属性</b>，可用RAG、引用溯源等手段缓解，但无法根除"],
+ ["Token","词元","模型处理文本的最小语义单元（子词切分），是计费与上下文度量的基本单位。中文场景1个汉字约合1–2个Token；<b>输入与输出分开计价</b>，输出单价通常更高"],
+ ["TTFT / TPS","首词元延迟 / 每秒词元数","TTFT 衡量系统响应速度，TPS 决定输出流畅度，二者是LLM推理服务的核心延迟指标。优化手段：KV Cache、投机采样、连续批处理"],
+ ["GSB评测","好·平·差对比评测","标注员对新旧模型的匿名输出做盲评，统计 Good / Same / Bad 分布，是验证模型迭代是否真正变好的<b>主流人工评测范式</b>"],
+ ["数据闭环","数据闭环","将线上用户行为信号（点赞、点踩、采纳、改写）系统化回流为评测集与训练数据，驱动模型持续迭代，形成「使用越多、效果越好」的<b>数据飞轮</b>，是AI产品的核心壁垒"]
 ];
 
 const QUESTIONS=[
@@ -1147,9 +1151,9 @@ $('#quizBox').addEventListener('click',e=>{
 renderQuiz();
 
 /* 闪卡 */
-$('#flashCards').innerHTML=FLASH.map(([t,b])=>`
+$('#flashCards').innerHTML=FLASH.map(([t,cn,b])=>`
   <div class="fc"><div class="face front"><div class="term">${t}</div><div class="hint">点击翻面查看要点</div></div>
-  <div class="face back">${b}</div></div>`).join('');
+  <div class="face back"><div class="cn">${cn}</div><p>${b}</p></div></div>`).join('');
 $('#flashCards').addEventListener('click',e=>{
   const fc=e.target.closest('.fc'); if(fc)fc.classList.toggle('flipped');
 });

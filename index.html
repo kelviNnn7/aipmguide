@@ -400,6 +400,39 @@ nav .wrap.topbar{position:relative;justify-content:center;overflow:visible}
   .fs-row input[type=range]{height:8px}
   .fs-row input[type=range]::-webkit-slider-thumb{width:28px;height:28px}
 }
+
+/* ===== 字号缩放：仅改字体，不动布局比例 ===== */
+:root{--fscale:1}
+body{font-size:calc(15px*var(--fscale))}
+h1{font-size:calc(clamp(34px,6vw,58px)*var(--fscale))}
+h2{font-size:calc(clamp(24px,3.6vw,34px)*var(--fscale))}
+h3{font-size:calc(19px*var(--fscale))}
+h4{font-size:calc(15.5px*var(--fscale))}
+.hero p.sub{font-size:calc(16px*var(--fscale))}
+.acc-head{font-size:calc(15.5px*var(--fscale))}
+.acc-body-in{font-size:calc(14px*var(--fscale))}
+.callout{font-size:calc(14px*var(--fscale))}
+.co-title{font-size:calc(13.5px*var(--fscale))}
+table{font-size:calc(13.5px*var(--fscale))}
+.step b{font-size:calc(14.5px*var(--fscale))}
+.step span{font-size:calc(13.5px*var(--fscale))}
+.tl-item p{font-size:calc(13.5px*var(--fscale))}
+.co-card dl{font-size:calc(14px*var(--fscale))}
+.co-card .co-name{font-size:calc(20px*var(--fscale))}
+.qcard .q-head{font-size:calc(15px*var(--fscale))}
+.qcard .ans-in{font-size:calc(14px*var(--fscale))}
+.quiz .q{font-size:calc(16.5px*var(--fscale))}
+.quiz .opt{font-size:calc(14.5px*var(--fscale))}
+.quiz .why{font-size:calc(14px*var(--fscale))}
+.calc label{font-size:calc(13.5px*var(--fscale))}
+.calc .tip{font-size:calc(12.5px*var(--fscale))}
+.check-item .txt{font-size:calc(14px*var(--fscale))}
+.toclink .tt{font-size:calc(14.5px*var(--fscale))}
+.fc .front .term{font-size:calc(18px*var(--fscale))}
+.fc .back{font-size:calc(13px*var(--fscale))}
+.stat b{font-size:calc(24px*var(--fscale))}
+[style*="font-size:13.5px"]{font-size:calc(13.5px*var(--fscale))!important}
+[style*="font-size:14px"]{font-size:calc(14px*var(--fscale))!important}
 </style>
 </head>
 <body>
@@ -512,8 +545,6 @@ nav .wrap.topbar{position:relative;justify-content:center;overflow:visible}
       <dt>准备建议</dt><dd id="jd-advice"></dd>
     </dl>
   </div>
-
-  <div class="callout co-view reveal"><div class="co-title">🎯 面试官视角</div>转行候选人挂得最多的不是"不懂技术"，而是<strong>投错了岗位类型</strong>——用C端应用的准备去面模型产品岗，第一个技术追问就崩了。先定位，再准备。</div>
 </section>
 
 <!-- ================= 模块一 ================= -->
@@ -1138,7 +1169,8 @@ const rootEl=document.documentElement;
 function fontLabel(v){return v.toFixed(1)+'px'+(v===15?' · 标准':v<15?' · 偏小':' · 偏大');}
 function applyPrefs(){
   rootEl.dataset.theme=prefs.theme;
-  document.body.style.zoom=(prefs.font/15);
+  document.body.style.removeProperty('zoom');
+  rootEl.style.setProperty('--fscale',(prefs.font/15));
   const fr=$('#fontRange'); if(fr)fr.value=prefs.font;
   const fv=$('#fontVal'); if(fv)fv.textContent=fontLabel(prefs.font);
   rootEl.dataset.motion=prefs.motion;

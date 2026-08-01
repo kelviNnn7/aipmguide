@@ -348,6 +348,58 @@ html[data-motion=off] .reveal{opacity:1;transform:none}
   .quiz .opt:active{border-color:var(--accent);background:var(--accent-soft)}
   .navlink:active{background:#f1f5f9}
 }
+
+/* ===== 顶部栏（iOS风格） ===== */
+nav .wrap.topbar{position:relative;justify-content:center;overflow:visible}
+.ios-btn{position:absolute;left:0;display:inline-flex;align-items:center;gap:7px;background:rgba(120,120,128,.14);color:var(--ink);font-size:13.5px;font-weight:600;padding:8px 16px;border-radius:999px;transition:background .2s,transform .15s;-webkit-tap-highlight-color:transparent}
+.ios-btn:hover{background:rgba(120,120,128,.22)}
+.ios-btn:active{background:rgba(120,120,128,.28);transform:scale(.96)}
+.ios-btn svg{width:16px;height:16px}
+
+/* ===== 目录抽屉（左侧滑出） ===== */
+#tocMask{position:fixed;inset:0;background:rgba(15,23,42,.35);backdrop-filter:blur(2px);z-index:95;opacity:0;pointer-events:none;transition:.3s}
+#tocMask.show{opacity:1;pointer-events:auto}
+#tocPanel{position:fixed;top:0;left:0;bottom:0;width:330px;max-width:86vw;background:#fff;z-index:96;box-shadow:8px 0 40px rgba(15,23,42,.15);transform:translateX(-105%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+#tocPanel.show{transform:none}
+.toc-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px 16px;border-bottom:1px solid var(--line)}
+.toc-head b{font-size:17px}
+.toc-head small{display:block;font-size:11px;color:var(--ink4);letter-spacing:2px;font-weight:600;margin-top:2px}
+.toc-close{width:34px;height:34px;border-radius:50%;background:#f1f5f9;color:var(--ink3);font-size:16px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.toc-close:hover{background:var(--line);color:var(--ink)}
+.toc-list{flex:1;overflow-y:auto;padding:14px 16px}
+.toclink{display:flex;align-items:center;gap:13px;width:100%;text-align:left;padding:13px 14px;border-radius:14px;transition:.2s;position:relative;-webkit-tap-highlight-color:transparent}
+.toclink:hover{background:#f8fafc}
+.toclink .num{width:34px;height:34px;border-radius:10px;background:#f1f5f9;color:var(--ink3);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.2s}
+.toclink .tt{font-size:14.5px;font-weight:600;color:var(--ink2);line-height:1.4}
+.toclink .arrow{margin-left:auto;color:var(--ink4);font-size:12px;opacity:0;transform:translateX(-4px);transition:.2s}
+.toclink:hover .arrow{opacity:1;transform:none}
+.toclink.active{background:var(--accent-soft)}
+.toclink.active .num{background:var(--accent);color:#fff}
+.toclink.active .tt{color:var(--accent)}
+.toclink.active::before{content:"";position:absolute;left:-16px;top:20%;bottom:20%;width:3.5px;border-radius:2px;background:var(--accent)}
+.toc-foot{border-top:1px solid var(--line);padding:16px 24px;font-size:12.5px;color:var(--ink4)}
+.toc-foot .bar{height:5px;background:#f1f5f9;border-radius:3px;overflow:hidden;margin-top:8px}
+.toc-foot .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-light));border-radius:3px;transition:width .3s}
+
+/* ===== 设置按钮（iOS齿轮） ===== */
+#settingsBtn svg{width:22px;height:22px}
+
+/* ===== 字号滑块（iOS显示大小风格） ===== */
+.fs-box{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:16px 18px 12px}
+.fs-row{display:flex;align-items:center;gap:14px}
+.fs-a{color:var(--ink3);font-weight:700;line-height:1}
+.fs-a.small{font-size:13px}
+.fs-a.large{font-size:21px}
+.fs-row input[type=range]{flex:1;background:var(--line2);height:5px}
+.fs-row input[type=range]::-webkit-slider-thumb{background:#fff;border:1px solid var(--line2);box-shadow:0 1px 5px rgba(15,23,42,.18);width:24px;height:24px}
+.fs-meta{text-align:center;margin-top:10px}
+.fs-meta span{font-size:12.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:3px 12px;border-radius:999px}
+@media(max-width:640px){
+  .ios-btn{padding:8px 13px;font-size:13px}
+  #tocPanel{width:300px}
+  .fs-row input[type=range]{height:8px}
+  .fs-row input[type=range]::-webkit-slider-thumb{width:28px;height:28px}
+}
 </style>
 </head>
 <body>
@@ -355,17 +407,34 @@ html[data-motion=off] .reveal{opacity:1;transform:none}
 <div id="pbar"></div>
 
 <nav>
-  <div class="wrap">
+  <div class="wrap topbar">
+    <button id="tocBtn" class="ios-btn" aria-label="打开目录">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="3.5"/><line x1="9.5" y1="4.5" x2="9.5" y2="19.5"/></svg>
+      目录
+    </button>
     <span class="brand"><span class="dot"></span>AIPM Guide</span>
-    <a class="navlink" href="#m0">评分卡</a>
-    <a class="navlink" href="#m1">技术认知</a>
-    <a class="navlink" href="#m2">方法论</a>
-    <a class="navlink" href="#m3">场景与商业化</a>
-    <a class="navlink" href="#m4">协作</a>
-    <a class="navlink" href="#m5">面试题库</a>
-    <a class="navlink" href="#m6">12周路线</a>
   </div>
 </nav>
+
+<!-- ================= 目录抽屉 ================= -->
+<div id="tocMask"></div>
+<aside id="tocPanel" aria-label="章节目录">
+  <div class="toc-head">
+    <div><b>目录</b><small>CONTENTS</small></div>
+    <button class="toc-close" id="tocClose">✕</button>
+  </div>
+  <div class="toc-list" id="tocList">
+    <button class="toclink" data-target="#m0"><span class="num">00</span><span class="tt">面试官到底在考什么</span><span class="arrow">→</span></button>
+    <button class="toclink" data-target="#m1"><span class="num">01</span><span class="tt">AI基础技术认知</span><span class="arrow">→</span></button>
+    <button class="toclink" data-target="#m2"><span class="num">02</span><span class="tt">AI产品方法论</span><span class="arrow">→</span></button>
+    <button class="toclink" data-target="#m3"><span class="num">03</span><span class="tt">行业应用场景与商业化</span><span class="arrow">→</span></button>
+    <button class="toclink" data-target="#m4"><span class="num">04</span><span class="tt">跨团队协作能力</span><span class="arrow">→</span></button>
+    <button class="toclink" data-target="#m5"><span class="num">05</span><span class="tt">面试核心考察点与实战题库</span><span class="arrow">→</span></button>
+    <button class="toclink" data-target="#m6"><span class="num">06</span><span class="tt">12周学习路线图</span><span class="arrow">→</span></button>
+    <button class="toclink" data-target="#m7"><span class="num">★</span><span class="tt">面试官的最后三条忠告</span><span class="arrow">→</span></button>
+  </div>
+  <div class="toc-foot">阅读进度 <span id="tocPct">0%</span><div class="bar"><i id="tocBar"></i></div></div>
+</aside>
 
 <!-- ================= HERO ================= -->
 <header class="hero">
@@ -783,7 +852,9 @@ html[data-motion=off] .reveal{opacity:1;transform:none}
 <button id="toTop" title="回到顶部">↑</button>
 
 <!-- ================= 设置模块 ================= -->
-<button id="settingsBtn" title="外观设置">⚙️</button>
+<button id="settingsBtn" title="外观设置" aria-label="外观设置">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+</button>
 <div id="settingsMask"></div>
 <aside id="settingsPanel" aria-label="外观设置">
   <div class="sp-head"><b>⚙️ 外观设置</b><button class="sp-close" id="settingsClose">✕</button></div>
@@ -810,11 +881,14 @@ html[data-motion=off] .reveal{opacity:1;transform:none}
       </div>
     </div>
     <div class="sp-sec">
-      <h5>字号</h5>
-      <div class="seg" id="fontSeg">
-        <button data-font="small">偏小</button>
-        <button data-font="default">标准</button>
-        <button data-font="large">偏大</button>
+      <h5>显示大小</h5>
+      <div class="fs-box">
+        <div class="fs-row">
+          <span class="fs-a small">A</span>
+          <input type="range" id="fontRange" min="13" max="18" step="0.5" value="15" aria-label="字体大小">
+          <span class="fs-a large">A</span>
+        </div>
+        <div class="fs-meta"><span id="fontVal">15.0px · 标准</span></div>
       </div>
     </div>
     <div class="sp-sec">
@@ -901,16 +975,34 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 window.addEventListener('scroll',()=>{
   const h=document.documentElement, p=h.scrollTop/(h.scrollHeight-h.clientHeight);
   $('#pbar').style.width=(p*100)+'%';
+  $('#tocBar').style.width=(p*100)+'%';
+  $('#tocPct').textContent=Math.round(p*100)+'%';
   $('#toTop').classList.toggle('show',h.scrollTop>600);
 });
 $('#toTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
 
 /* scroll-spy */
-const secs=$$('section'), links=$$('.navlink');
+const secs=$$('section'), links=$$('.toclink');
 const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
-  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+  links.forEach(l=>l.classList.toggle('active',l.dataset.target==='#'+e.target.id));
 }})},{rootMargin:'-30% 0px -60% 0px'});
 secs.forEach(s=>spy.observe(s));
+
+/* 目录抽屉 */
+const tocPanel=$('#tocPanel'),tocMask=$('#tocMask'),tocBtn=$('#tocBtn');
+function openToc(o){
+  tocPanel.classList.toggle('show',o); tocMask.classList.toggle('show',o);
+  document.body.style.overflow=(o||panel.classList.contains('show'))?'hidden':'';
+}
+tocBtn.onclick=()=>openToc(!tocPanel.classList.contains('show'));
+tocMask.onclick=()=>openToc(false);
+$('#tocClose').onclick=()=>openToc(false);
+$('#tocList').addEventListener('click',e=>{
+  const l=e.target.closest('.toclink'); if(!l)return;
+  openToc(false);
+  const t=$(l.dataset.target);
+  if(t)setTimeout(()=>t.scrollIntoView({behavior:'smooth'}),120);
+});
 
 /* 入场动画 */
 const rev=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rev.unobserve(e.target)}})},{threshold:.08});
@@ -1039,15 +1131,18 @@ updateProgress();
 
 /* ============ 设置模块 ============ */
 const PREF_KEY='aipm_appearance';
-const prefs=Object.assign({theme:'blue',font:'default',motion:'on'},JSON.parse(localStorage.getItem(PREF_KEY)||'{}'));
+const prefs=Object.assign({theme:'blue',font:15,motion:'on'},JSON.parse(localStorage.getItem(PREF_KEY)||'{}'));
+if(typeof prefs.font!=='number')prefs.font=15; /* 兼容旧版三档设置 */
 const rootEl=document.documentElement;
 
+function fontLabel(v){return v.toFixed(1)+'px'+(v===15?' · 标准':v<15?' · 偏小':' · 偏大');}
 function applyPrefs(){
   rootEl.dataset.theme=prefs.theme;
-  if(prefs.font==='default'){delete rootEl.dataset.font;}else{rootEl.dataset.font=prefs.font;}
+  document.body.style.zoom=(prefs.font/15);
+  const fr=$('#fontRange'); if(fr)fr.value=prefs.font;
+  const fv=$('#fontVal'); if(fv)fv.textContent=fontLabel(prefs.font);
   rootEl.dataset.motion=prefs.motion;
   $$('#swatches .swatch').forEach(s=>s.classList.toggle('active',s.dataset.theme===prefs.theme));
-  $$('#fontSeg button').forEach(b=>b.classList.toggle('active',b.dataset.font===prefs.font));
   $('#motionToggle').checked=(prefs.motion==='off');
   localStorage.setItem(PREF_KEY,JSON.stringify(prefs));
 }
@@ -1061,21 +1156,20 @@ function openSettings(o){
 sBtn.onclick=()=>openSettings(!panel.classList.contains('show'));
 mask.onclick=()=>openSettings(false);
 $('#settingsClose').onclick=()=>openSettings(false);
-document.addEventListener('keydown',e=>{if(e.key==='Escape')openSettings(false);});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){openSettings(false);openToc(false);}});
 
 $('#swatches').addEventListener('click',e=>{
   const s=e.target.closest('.swatch'); if(!s)return;
   prefs.theme=s.dataset.theme; applyPrefs();
 });
-$('#fontSeg').addEventListener('click',e=>{
-  const b=e.target.closest('button'); if(!b)return;
-  prefs.font=b.dataset.font; applyPrefs();
+$('#fontRange').addEventListener('input',e=>{
+  prefs.font=+e.target.value; applyPrefs();
 });
 $('#motionToggle').addEventListener('change',e=>{
   prefs.motion=e.target.checked?'off':'on'; applyPrefs();
 });
 $('#settingsReset').onclick=()=>{
-  Object.assign(prefs,{theme:'blue',font:'default',motion:'on'}); applyPrefs();
+  Object.assign(prefs,{theme:'blue',font:15,motion:'on'}); applyPrefs();
 };
 /* 移动端：下滑关闭设置面板 */
 let touchY=null;

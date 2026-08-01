@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI产品经理面试学习指南 · 交互版</title>
+<meta name="description" content="面试官视角的AI产品经理转行学习指南：技术认知、产品方法论、场景商业化、协作能力、面试题库与12周路线图">
+<style>
+:root{
+  --bg:#FAFAFA; --card:#ffffff; --ink:#0f172a; --ink2:#334155; --ink3:#64748b; --ink4:#94a3b8;
+  --line:#e2e8f0; --line2:#cbd5e1; --accent:#2563EB; --accent-soft:#eff6ff;
+  --amber:#d97706; --amber-bg:#fffbeb; --red:#dc2626; --red-bg:#fef2f2;
+  --green:#16a34a; --green-bg:#f0fdf4;
+  --shadow:0 1px 2px rgba(15,23,42,.04),0 4px 16px -4px rgba(15,23,42,.06);
+  --shadow-lg:0 4px 8px -2px rgba(15,23,42,.05),0 16px 40px -8px rgba(15,23,42,.12);
+  --r:16px; --r-lg:24px;
+  /* 主题变量（默认蓝） */
+  --accent2:#7c3aed; --accent-border:#bfdbfe; --accent-light:#60a5fa;
+  --accent-ring:#dbeafe; --glow:rgba(37,99,235,.10);
+}
+/* ===== 四套主题 ===== */
+[data-theme=blue]{--accent:#2563EB;--accent2:#7c3aed;--accent-soft:#eff6ff;--accent-border:#bfdbfe;--accent-light:#60a5fa;--accent-ring:#dbeafe;--glow:rgba(37,99,235,.10)}
+[data-theme=violet]{--accent:#7c3aed;--accent2:#db2777;--accent-soft:#f5f3ff;--accent-border:#ddd6fe;--accent-light:#a78bfa;--accent-ring:#ede9fe;--glow:rgba(124,58,237,.10)}
+[data-theme=emerald]{--accent:#059669;--accent2:#0d9488;--accent-soft:#ecfdf5;--accent-border:#a7f3d0;--accent-light:#34d399;--accent-ring:#d1fae5;--glow:rgba(5,150,105,.10)}
+[data-theme=sunset]{--accent:#ea580c;--accent2:#dc2626;--accent-soft:#fff7ed;--accent-border:#fed7aa;--accent-light:#fb923c;--accent-ring:#ffedd5;--glow:rgba(234,88,12,.10)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.8;font-size:15px;-webkit-font-smoothing:antialiased}
+::selection{background:#dbeafe}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* ===== 顶部进度条 ===== */
+#pbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent),#60a5fa);width:0;z-index:100;transition:width .1s linear}
+
+/* ===== 导航 ===== */
+nav{position:sticky;top:0;z-index:90;background:rgba(250,250,250,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:6px;height:58px;overflow-x:auto;scrollbar-width:none}
+nav .wrap::-webkit-scrollbar{display:none}
+.brand{font-weight:800;font-size:15px;letter-spacing:.5px;white-space:nowrap;margin-right:14px;display:flex;align-items:center;gap:8px}
+.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px #dbeafe}
+.navlink{white-space:nowrap;font-size:13.5px;color:var(--ink3);padding:6px 12px;border-radius:999px;transition:.2s;font-weight:500}
+.navlink:hover{color:var(--ink);background:#f1f5f9}
+.navlink.active{color:#fff;background:var(--ink)}
+
+/* ===== Hero ===== */
+.hero{position:relative;padding:96px 0 72px;overflow:hidden}
+.hero .dots{position:absolute;inset:0;background-image:radial-gradient(#cbd5e1 1px,transparent 1px);background-size:26px 26px;opacity:.5;
+  -webkit-mask-image:linear-gradient(to bottom,black 20%,transparent 90%);mask-image:linear-gradient(to bottom,black 20%,transparent 90%)}
+.hero .glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:720px;height:480px;background:radial-gradient(50% 50% at 50% 50%,rgba(37,99,235,.10),transparent 70%);pointer-events:none}
+.hero .wrap{position:relative;text-align:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink2);background:#fff;border:1px solid var(--line);padding:6px 16px;border-radius:999px;box-shadow:var(--shadow);margin-bottom:28px}
+.kicker .pulse{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(22,163,74,.4)}70%{box-shadow:0 0 0 7px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+h1{font-size:clamp(34px,6vw,58px);font-weight:900;letter-spacing:-1px;line-height:1.2}
+h1 .grad{background:linear-gradient(120deg,var(--accent),#7c3aed);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{max-width:640px;margin:22px auto 0;color:var(--ink3);font-size:16px}
+.hero .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:36px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:14px 22px;box-shadow:var(--shadow);text-align:center;min-width:120px;transition:.25s}
+.stat:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.stat b{display:block;font-size:24px;font-weight:800;color:var(--ink)}
+.stat span{font-size:12.5px;color:var(--ink4)}
+.hero .cta{margin-top:36px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:999px;font-size:15px;font-weight:600;transition:.25s}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:var(--shadow)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);background:#1e293b}
+.btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink2)}
+.btn-ghost:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+
+/* ===== 章节 ===== */
+section{padding:64px 0 8px}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+.sec-num{font-size:13px;font-weight:800;color:var(--accent);background:var(--accent-soft);border:1px solid #bfdbfe;padding:3px 12px;border-radius:999px;white-space:nowrap}
+h2{font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.5px}
+.sec-desc{color:var(--ink3);margin-bottom:28px;max-width:760px}
+h3{font-size:19px;font-weight:700;margin:34px 0 14px;display:flex;align-items:center;gap:10px}
+h3::before{content:"";width:4px;height:20px;background:var(--accent);border-radius:2px;flex-shrink:0}
+h4{font-size:15.5px;font-weight:700;margin:18px 0 8px}
+p{margin:8px 0}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin-bottom:6px}
+strong{color:var(--ink)}
+
+/* ===== 卡片网格 ===== */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:26px;box-shadow:var(--shadow);transition:.28s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:var(--line2)}
+.card .bignum{position:absolute;right:-14px;top:-30px;font-size:110px;font-weight:900;color:#f1f5f9;line-height:1;pointer-events:none;transition:.4s}
+.card:hover .bignum{transform:scale(1.06)}
+.card h4{margin-top:0}
+.tag{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 10px;border-radius:999px;margin:2px 4px 2px 0}
+.tag-red{background:#fee2e2;color:#b91c1c}
+.tag-blue{background:#dbeafe;color:#1d4ed8}
+.tag-green{background:#dcfce7;color:#15803d}
+.tag-amber{background:#fef3c7;color:#b45309}
+.tag-slate{background:#f1f5f9;color:#475569}
+
+/* ===== 面试官视角 / 扣分项 / 框架 ===== */
+.callout{border-radius:var(--r);padding:16px 20px;margin:16px 0;font-size:14px;border:1px solid}
+.co-view{background:var(--amber-bg);border-color:#fde68a}
+.co-view .co-title{color:#92400e}
+.co-trap{background:var(--red-bg);border-color:#fecaca}
+.co-trap .co-title{color:#991b1b}
+.co-frame{background:var(--accent-soft);border-color:#bfdbfe}
+.co-frame .co-title{color:#1e40af}
+.co-title{font-weight:800;font-size:13.5px;display:flex;align-items:center;gap:7px;margin-bottom:6px}
+
+/* ===== 表格 ===== */
+.tblwrap{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:var(--r);background:#fff;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:640px}
+th{background:#f8fafc;color:var(--ink2);font-weight:700;text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:11px 14px;border-bottom:1px solid #f1f5f9;vertical-align:top;color:var(--ink2)}
+tr:last-child td{border-bottom:none}
+tbody tr{transition:.15s}
+tbody tr:hover{background:#f8fafc}
+
+/* ===== 深度徽章 ===== */
+.depth{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:1px 9px;border-radius:999px;white-space:nowrap;vertical-align:middle}
+.d1{background:#dcfce7;color:#166534}
+.d2{background:#fef3c7;color:#92400e}
+.d3{background:#fee2e2;color:#991b1b}
+
+/* ===== 手风琴 ===== */
+.acc{border:1px solid var(--line);border-radius:var(--r);background:#fff;margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);transition:.25s}
+.acc.open{box-shadow:var(--shadow-lg)}
+.acc-head{width:100%;display:flex;align-items:center;gap:14px;padding:18px 22px;text-align:left;font-size:15.5px;font-weight:700;color:var(--ink)}
+.acc-head .ico{width:34px;height:34px;border-radius:10px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.acc-head .chev{margin-left:auto;color:var(--ink4);transition:.3s;flex-shrink:0;font-size:13px}
+.acc.open .chev{transform:rotate(180deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.acc-body-in{padding:0 22px 22px 70px;color:var(--ink2);font-size:14px}
+@media(max-width:640px){.acc-body-in{padding-left:22px}}
+
+/* ===== Tabs ===== */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tab{padding:9px 20px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--ink3);border:1px solid var(--line);background:#fff;transition:.2s}
+.tab:hover{color:var(--ink)}
+.tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.tabpane{display:none;animation:fade .35s}
+.tabpane.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===== 决策器 ===== */
+.quiz{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:30px;box-shadow:var(--shadow)}
+.quiz .q{font-size:16.5px;font-weight:700;margin-bottom:18px}
+.quiz .opts{display:grid;gap:10px}
+.quiz .opt{text-align:left;padding:14px 18px;border:1.5px solid var(--line);border-radius:14px;font-size:14.5px;color:var(--ink2);transition:.2s;background:#fff}
+.quiz .opt:hover{border-color:var(--accent);background:var(--accent-soft);transform:translateX(4px)}
+.quiz .result{text-align:center;padding:20px 0}
+.quiz .verdict{font-size:26px;font-weight:900;margin:10px 0}
+.quiz .why{color:var(--ink3);font-size:14px;max-width:520px;margin:0 auto 18px}
+.quiz .restart{font-size:13px;color:var(--accent);font-weight:600;text-decoration:underline}
+.quiz .crumb{font-size:12.5px;color:var(--ink4);margin-bottom:14px}
+
+/* ===== 计算器 ===== */
+.calc{background:linear-gradient(135deg,#0f172a,#1e293b);color:#e2e8f0;border-radius:var(--r-lg);padding:32px;box-shadow:var(--shadow-lg)}
+.calc h4{color:#fff;font-size:17px;display:flex;align-items:center;gap:8px}
+.calc .row{margin:20px 0}
+.calc label{display:flex;justify-content:space-between;font-size:13.5px;color:#94a3b8;margin-bottom:8px}
+.calc label output{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;-webkit-appearance:none;height:6px;border-radius:3px;background:#334155;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--accent);border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.4);cursor:pointer;transition:.15s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+.calc .out{border-top:1px dashed #334155;margin-top:24px;padding-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;text-align:center}
+.calc .out b{display:block;font-size:26px;font-weight:800;color:#60a5fa;font-variant-numeric:tabular-nums}
+.calc .out span{font-size:12px;color:#94a3b8}
+.calc .tip{font-size:12.5px;color:#64748b;margin-top:16px;line-height:1.7}
+
+/* ===== 题库 ===== */
+.qbank .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow);transition:.25s}
+.qcard:hover{border-color:var(--line2)}
+.qcard .q-head{width:100%;display:flex;align-items:center;gap:12px;padding:16px 20px;text-align:left;font-size:15px;font-weight:600;color:var(--ink)}
+.qcard .q-head .cat{flex-shrink:0}
+.qcard .q-head .chev{margin-left:auto;color:var(--ink4);transition:.3s;font-size:13px}
+.qcard.open .q-head .chev{transform:rotate(180deg)}
+.qcard .ans{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.qcard .ans-in{padding:0 20px 18px 20px;color:var(--ink2);font-size:14px;border-top:1px dashed var(--line);padding-top:14px;margin:0 20px 18px;padding-left:0;padding-right:0}
+
+/* ===== 框架步骤 ===== */
+.steps{counter-reset:st;display:grid;gap:10px;margin:16px 0}
+.step{display:flex;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px 20px;box-shadow:var(--shadow);transition:.25s}
+.step:hover{transform:translateX(6px);border-color:#bfdbfe}
+.step::before{counter-increment:st;content:counter(st);width:32px;height:32px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.step b{display:block;font-size:14.5px}
+.step span{font-size:13.5px;color:var(--ink3)}
+
+/* ===== 时间线 ===== */
+.timeline{position:relative;padding-left:34px;margin-top:24px}
+.timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl-item{position:relative;padding-bottom:30px}
+.tl-item::before{content:"";position:absolute;left:-31px;top:7px;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--line2);transition:.3s}
+.tl-item:hover::before{border-color:var(--accent);box-shadow:0 0 0 4px #dbeafe}
+.tl-item .tl-tag{font-size:12px;font-weight:700;color:var(--accent)}
+.tl-item h4{margin:2px 0 6px}
+.tl-item p{font-size:13.5px;color:var(--ink3)}
+
+/* ===== 清单 ===== */
+.check-list{display:grid;gap:10px}
+.check-item{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 18px;cursor:pointer;transition:.2s;user-select:none}
+.check-item:hover{border-color:var(--line2)}
+.check-item .box{width:22px;height:22px;border-radius:7px;border:2px solid var(--line2);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:.2s;color:#fff;font-size:13px}
+.check-item.done .box{background:var(--green);border-color:var(--green)}
+.check-item.done .txt{color:var(--ink4);text-decoration:line-through}
+.check-item .txt{font-size:14px;color:var(--ink2)}
+.check-item .wk{font-size:11.5px;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:2px 9px;border-radius:999px;flex-shrink:0;margin-top:2px}
+.progress-wrap{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:18px 22px;box-shadow:var(--shadow);margin-bottom:18px;display:flex;align-items:center;gap:18px}
+.progress-bar{flex:1;height:10px;background:#f1f5f9;border-radius:5px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#4ade80);width:0;transition:width .5s ease;border-radius:5px}
+.progress-num{font-weight:800;font-size:18px;color:var(--green);min-width:56px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ===== 闪卡 ===== */
+.flash{perspective:1200px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.fc{height:170px;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.fc.flipped{transform:rotateY(180deg)}
+.fc .face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r-lg);padding:22px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;box-shadow:var(--shadow)}
+.fc .front{background:#fff;border:1px solid var(--line)}
+.fc .front .term{font-size:18px;font-weight:800}
+.fc .front .hint{font-size:12px;color:var(--ink4);margin-top:10px}
+.fc .back{background:var(--ink);color:#e2e8f0;transform:rotateY(180deg);font-size:13px;line-height:1.7;border:1px solid #1e293b}
+.fc .back b{color:#60a5fa}
+
+/* ===== 公司tabs内容 ===== */
+.co-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:28px;box-shadow:var(--shadow)}
+.co-card .co-name{font-size:20px;font-weight:800;display:flex;align-items:center;gap:10px}
+.co-card dl{display:grid;grid-template-columns:100px 1fr;gap:10px 18px;margin-top:18px;font-size:14px}
+.co-card dt{font-weight:700;color:var(--ink3)}
+.co-card dd{color:var(--ink2)}
+
+/* ===== 底部 ===== */
+footer{margin-top:80px;border-top:1px solid var(--line);padding:36px 0;text-align:center;color:var(--ink4);font-size:13px}
+#toTop{position:fixed;right:26px;bottom:26px;width:46px;height:46px;border-radius:50%;background:var(--ink);color:#fff;font-size:18px;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:.3s;z-index:80;display:flex;align-items:center;justify-content:center}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{transform:translateY(-3px)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== 主题变量接管（覆盖硬编码色） ===== */
+#pbar{background:linear-gradient(90deg,var(--accent),var(--accent-light))}
+h1 .grad{background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text}
+.brand .dot{background:var(--accent);box-shadow:0 0 0 4px var(--accent-ring)}
+.hero .glow{background:radial-gradient(50% 50% at 50% 50%,var(--glow),transparent 70%)}
+.sec-num{border-color:var(--accent-border)}
+.co-frame{border-color:var(--accent-border)}
+.step:hover{border-color:var(--accent-border)}
+.tl-item:hover::before{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-ring)}
+.calc .out b{color:var(--accent-light)}
+.fc .back b{color:var(--accent-light)}
+
+/* ===== 设置模块 ===== */
+#settingsBtn{position:fixed;right:26px;bottom:84px;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--line);color:var(--ink2);font-size:20px;box-shadow:var(--shadow-lg);z-index:80;display:flex;align-items:center;justify-content:center;transition:.3s}
+#settingsBtn:hover{transform:rotate(45deg);color:var(--accent);border-color:var(--accent-border)}
+#settingsBtn.open{transform:rotate(45deg);color:var(--accent);border-color:var(--accent-border)}
+#settingsMask{position:fixed;inset:0;background:rgba(15,23,42,.35);backdrop-filter:blur(2px);z-index:95;opacity:0;pointer-events:none;transition:.3s}
+#settingsMask.show{opacity:1;pointer-events:auto}
+#settingsPanel{position:fixed;top:0;right:0;bottom:0;width:340px;max-width:88vw;background:#fff;z-index:96;box-shadow:-8px 0 40px rgba(15,23,42,.15);transform:translateX(105%);transition:transform .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow-y:auto}
+#settingsPanel.show{transform:none}
+.sp-head{display:flex;align-items:center;justify-content:space-between;padding:22px 24px;border-bottom:1px solid var(--line)}
+.sp-head b{font-size:17px}
+.sp-close{width:34px;height:34px;border-radius:50%;background:#f1f5f9;color:var(--ink3);font-size:16px;display:flex;align-items:center;justify-content:center;transition:.2s}
+.sp-close:hover{background:var(--line);color:var(--ink)}
+.sp-body{padding:24px;flex:1}
+.sp-sec{margin-bottom:30px}
+.sp-sec>h5{font-size:13px;font-weight:700;color:var(--ink4);text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.swatches{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.swatch{display:flex;align-items:center;gap:12px;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#fff;transition:.2s;text-align:left}
+.swatch:hover{border-color:var(--line2);transform:translateY(-2px)}
+.swatch.active{border-color:var(--accent);background:var(--accent-soft)}
+.swatch .dotset{display:flex;flex-shrink:0}
+.swatch .dotset i{width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.swatch .dotset i+i{margin-left:-6px}
+.swatch span{font-size:13.5px;font-weight:600;color:var(--ink2)}
+.swatch .ck{margin-left:auto;color:var(--accent);font-weight:800;font-size:14px;opacity:0}
+.swatch.active .ck{opacity:1}
+.seg{display:flex;background:#f1f5f9;border-radius:12px;padding:4px;gap:4px}
+.seg button{flex:1;padding:9px 0;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--ink3);transition:.2s}
+.seg button.active{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(15,23,42,.12)}
+.switch-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.switch-row .lbl{font-size:14px;font-weight:600;color:var(--ink2)}
+.switch-row .lbl small{display:block;font-size:12px;color:var(--ink4);font-weight:400}
+.switch{position:relative;width:48px;height:28px;flex-shrink:0}
+.switch input{opacity:0;width:100%;height:100%;position:absolute;cursor:pointer;z-index:2;margin:0}
+.switch .track{position:absolute;inset:0;background:var(--line2);border-radius:999px;transition:.25s}
+.switch .track::after{content:"";position:absolute;left:3px;top:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:.25s}
+.switch input:checked+.track{background:var(--accent)}
+.switch input:checked+.track::after{transform:translateX(20px)}
+.sp-reset{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;font-size:13.5px;font-weight:600;color:var(--ink3);transition:.2s}
+.sp-reset:hover{border-color:var(--red);color:var(--red);background:var(--red-bg)}
+/* 字号 */
+html[data-font=small] body{font-size:14px}
+html[data-font=large] body{font-size:16.5px}
+/* 减少动效 */
+html[data-motion=off] *,html[data-motion=off] *::before,html[data-motion=off] *::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+html[data-motion=off] .reveal{opacity:1;transform:none}
+
+/* ===== 移动端优化 ===== */
+@media(max-width:640px){
+  .hero{padding:60px 0 48px}
+  .hero .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{min-width:0;padding:12px 10px}
+  .stat b{font-size:20px}
+  section{padding:44px 0 4px}
+  .sec-head{gap:10px}
+  .card{padding:20px}
+  .card .bignum{font-size:84px}
+  .co-card{padding:20px}
+  .co-card dl{grid-template-columns:1fr;gap:2px 0}
+  .co-card dt{margin-top:10px}
+  .quiz{padding:20px}
+  .calc{padding:22px 18px}
+  .calc .out b{font-size:21px}
+  .acc-head{padding:16px;font-size:15px;gap:10px}
+  .acc-head .ico{width:30px;height:30px;font-size:15px}
+  .step{padding:14px 16px;gap:12px}
+  .step:hover{transform:none}
+  .tab{padding:10px 16px;font-size:13px}
+  .fc{height:auto;min-height:150px}
+  .fc .face{position:relative;inset:auto}
+  .fc .back{display:none;transform:none}
+  .fc.flipped{transform:none}
+  .fc.flipped .front{display:none}
+  .fc.flipped .back{display:flex}
+  .progress-wrap{flex-wrap:wrap;gap:10px}
+  /* 触控滑块加大 */
+  input[type=range]{height:8px}
+  input[type=range]::-webkit-slider-thumb{width:26px;height:26px}
+  /* 悬浮按钮适配 */
+  #toTop{right:16px;bottom:16px;width:42px;height:42px}
+  #settingsBtn{right:16px;bottom:70px;width:42px;height:42px}
+  /* 设置面板变底部抽屉 */
+  #settingsPanel{top:auto;left:0;right:0;bottom:0;width:100%;max-width:100%;max-height:82vh;border-radius:20px 20px 0 0;transform:translateY(105%);box-shadow:0 -8px 40px rgba(15,23,42,.2)}
+  #settingsPanel.show{transform:none}
+  #settingsPanel::before{content:"";position:sticky;top:0;display:block;width:40px;height:4px;border-radius:2px;background:var(--line2);margin:10px auto 0;flex-shrink:0}
+  .tblwrap{border-radius:12px}
+  table{font-size:12.5px}
+  th,td{padding:9px 10px}
+}
+/* 触屏设备禁用悬停位移，避免点按时的抖动 */
+@media(hover:none){
+  .card:hover,.stat:hover,.btn-primary:hover,.btn-ghost:hover{transform:none}
+  .step:hover{transform:none}
+  .quiz .opt:hover{transform:none;border-color:var(--line);background:#fff}
+  .quiz .opt:active{border-color:var(--accent);background:var(--accent-soft)}
+  .navlink:active{background:#f1f5f9}
+}
+</style>
+</head>
+<body>
+
+<div id="pbar"></div>
+
+<nav>
+  <div class="wrap">
+    <span class="brand"><span class="dot"></span>AIPM Guide</span>
+    <a class="navlink" href="#m0">评分卡</a>
+    <a class="navlink" href="#m1">技术认知</a>
+    <a class="navlink" href="#m2">方法论</a>
+    <a class="navlink" href="#m3">场景与商业化</a>
+    <a class="navlink" href="#m4">协作</a>
+    <a class="navlink" href="#m5">面试题库</a>
+    <a class="navlink" href="#m6">12周路线</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="dots"></div><div class="glow"></div>
+  <div class="wrap">
+    <span class="kicker"><span class="pulse"></span>面试官视角优化版 · 交互学习指南</span>
+    <h1>AI产品经理<br><span class="grad">面试学习指南</span></h1>
+    <p class="sub">基于字节跳动、智谱、Kimi（月之暗面）、腾讯、阿里等头部企业岗位要求<br>面向转行/转岗候选人 —— 懂技术边界 · 能做产品判断 · 会算商业账</p>
+    <div class="stats">
+      <div class="stat"><b>5</b><span>考察维度</span></div>
+      <div class="stat"><b>4</b><span>核心场景</span></div>
+      <div class="stat"><b>20+</b><span>高频面试题</span></div>
+      <div class="stat"><b>12</b><span>周学习路线</span></div>
+    </div>
+    <div class="cta">
+      <a class="btn btn-primary" href="#m0">开始学习 →</a>
+      <a class="btn btn-ghost" href="#m6">查看12周路线图</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ================= 模块〇 ================= -->
+<section id="m0">
+  <div class="sec-head"><span class="sec-num">MODULE 00</span><h2>面试官到底在考什么</h2></div>
+  <p class="sec-desc">面试官手里有一张隐形评分卡。先理解评分逻辑，再开始学习，效率翻倍。</p>
+
+  <h3>隐形评分卡</h3>
+  <div class="tblwrap reveal">
+    <table>
+      <thead><tr><th>考察维度</th><th>权重</th><th>面试官在找的信号</th><th>一票否决项</th></tr></thead>
+      <tbody>
+        <tr><td><strong>技术理解力</strong></td><td><span class="tag tag-red">30%</span></td><td>能讲清原理直觉 + 知道能力边界 + 能做技术选型权衡</td><td>背概念但追问一层就露馅；把LLM当"万能黑盒"</td></tr>
+        <tr><td><strong>产品Sense</strong></td><td><span class="tag tag-amber">25%</span></td><td>需求洞察有用户证据、方案有结构化拆解、有取舍意识</td><td>产品设计题没有框架、想到哪说到哪</td></tr>
+        <tr><td><strong>评估与数据能力</strong></td><td><span class="tag tag-blue">20%</span></td><td>主动提评测体系、有数据闭环意识、会算成本</td><td>全程不提"怎么衡量效果好不好"</td></tr>
+        <tr><td><strong>商业思维</strong></td><td><span class="tag tag-green">15%</span></td><td>知道Token成本结构、讲得清变现路径和定价逻辑</td><td>认为"效果好就行，成本是工程的事"</td></tr>
+        <tr><td><strong>落地与协作</strong></td><td><span class="tag tag-slate">10%</span></td><td>有真实推进项目的细节（冲突、排期、兜底）</td><td>所有经历停留在"我参与了"，说不出"我推动了"</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>岗位类型决定考察重点（点击卡片查看）</h3>
+  <div class="grid g2" id="jobTypes">
+    <div class="card reveal" data-job="0" style="cursor:pointer">
+      <div class="bignum">M</div>
+      <span class="tag tag-red">转行友好度 ★☆☆</span>
+      <h4>模型产品经理</h4>
+      <p style="font-size:13.5px;color:var(--ink3)">基座模型 / 能力迭代方向 · 智谱、Moonshot、字节Seed、阿里通义</p>
+    </div>
+    <div class="card reveal" data-job="1" style="cursor:pointer">
+      <div class="bignum">C</div>
+      <span class="tag tag-green">转行友好度 ★★★ 首选</span>
+      <h4>AI应用产品经理（C端）</h4>
+      <p style="font-size:13.5px;color:var(--ink3)">豆包、Kimi、元宝、夸克 · 产品Sense可迁移</p>
+    </div>
+    <div class="card reveal" data-job="2" style="cursor:pointer">
+      <div class="bignum">B</div>
+      <span class="tag tag-amber">转行友好度 ★★☆</span>
+      <h4>AI平台 / API产品经理</h4>
+      <p style="font-size:13.5px;color:var(--ink3)">智谱开放平台、火山引擎、阿里云百炼 · 有B端经验者友好</p>
+    </div>
+    <div class="card reveal" data-job="3" style="cursor:pointer">
+      <div class="bignum">+</div>
+      <span class="tag tag-green">转行友好度 ★★★</span>
+      <h4>AI+业务产品经理</h4>
+      <p style="font-size:13.5px;color:var(--ink3)">腾讯微信/游戏、阿里电商、字节广告 · 有对应行业经验者首选</p>
+    </div>
+  </div>
+  <div id="jobDetail" style="display:none" class="co-card">
+    <div class="co-name" id="jd-name"></div>
+    <dl>
+      <dt>考察侧重</dt><dd id="jd-focus"></dd>
+      <dt>面试风格</dt><dd id="jd-style"></dd>
+      <dt>准备建议</dt><dd id="jd-advice"></dd>
+    </dl>
+  </div>
+
+  <div class="callout co-view reveal"><div class="co-title">🎯 面试官视角</div>转行候选人挂得最多的不是"不懂技术"，而是<strong>投错了岗位类型</strong>——用C端应用的准备去面模型产品岗，第一个技术追问就崩了。先定位，再准备。</div>
+</section>
+
+<!-- ================= 模块一 ================= -->
+<section id="m1">
+  <div class="sec-head"><span class="sec-num">MODULE 01</span><h2>AI基础技术认知</h2><span class="tag tag-red">面试权重最高 · 转行者生死线</span></div>
+  <p class="sec-desc">面试官不需要你推导公式，但必须能判断三件事：<strong>"这个需求模型能不能做、做到什么程度、代价多大"</strong>。知识点按考察深度分级：<span class="depth d1">L1 讲清概念</span> <span class="depth d2">L2 举例讲为什么</span> <span class="depth d3">L3 做权衡决策</span></p>
+
+  <div id="accTech">
+    <div class="acc reveal">
+      <button class="acc-head"><span class="ico">🧮</span>机器学习与深度学习基础<span class="chev">▼</span></button>
+      <div class="acc-body"><div class="acc-body-in">
+        <ul>
+          <li><strong>三大范式</strong> <span class="depth d2">L2</span>：监督 / 无监督 / 强化学习的区别与典型应用（RLHF为什么属于强化学习）</li>
+          <li><strong>核心概念</strong> <span class="depth d2">L2</span>：训练 / 验证 / 测试集、过拟合与欠拟合、损失函数、学习率的直觉</li>
+          <li><strong>经典模型</strong> <span class="depth d1">L1</span>：逻辑回归、决策树、XGBoost——知道什么场景用什么即可</li>
+          <li><strong>深度学习结构</strong> <span class="depth d1">L1</span>：神经网络分层、反向传播直觉、CNN / RNN适用场景</li>
+          <li><strong>Embedding</strong> <span class="depth d3">L3</span>：文本 / 图片为何转向量、余弦相似度——理解推荐系统与RAG的钥匙，必考</li>
+        </ul>
+        <div class="callout co-view"><div class="co-title">🎯 高频追问</div>"模型过拟合了，作为产品经理你会怎么处理？"——正确答案不是技术细节本身，而是<strong>你能与算法团队对话</strong>：增加训练数据、简化模型、正则化、早停，并且知道先问"是训练集和线上分布不一致吗？"</div>
+        <div class="callout co-trap"><div class="co-title">⚠️ 扣分项</div>只会背定义。面试官会追问"你上一段经历里哪里用到了这个认知？"答不上来，前面背的全作废。</div>
+      </div></div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head"><span class="ico">🧠</span>大语言模型（LLM）——绝对核心<span class="chev">▼</span></button>
+      <div class="acc-body"><div class="acc-body-in">
+        <ul>
+          <li><strong>Transformer</strong> <span class="depth d2">L2</span>：自注意力机制的直觉（"每个词动态关注上下文中最相关的词"）、为何取代RNN（并行 + 长程依赖）</li>
+          <li><strong>LLM训练全流程</strong> <span class="depth d3">L3</span>：<strong>必考，务必能脱稿完整复述</strong>
+            <ol>
+              <li><strong>预训练</strong>：海量语料 + 下一个词预测 → 基座模型（"博览群书但不懂规矩"）</li>
+              <li><strong>SFT监督微调</strong>：高质量指令数据教会模型"听懂人话"</li>
+              <li><strong>对齐（RLHF / DPO）</strong>：让回答更有用、无害、诚实；知道DPO为何部分取代RLHF（更稳定、更便宜）</li>
+            </ol></li>
+          <li><strong>推理侧概念</strong> <span class="depth d3">L3</span>：Token与计费逻辑、Temperature / Top-p（创造性 vs 确定性）、上下文窗口、首Token延迟（TTFT）与生成速度（TPS）</li>
+          <li><strong>幻觉</strong> <span class="depth d3">L3</span>：成因（本质是概率生成，不是数据库查询）与缓解手段（RAG、引用溯源、置信度外显、人工兜底）</li>
+          <li><strong>RAG完整链路</strong> <span class="depth d3">L3</span>：文档切分 → 向量化 → 检索（稠密/稀疏混合）→ 重排序（Rerank）→ 拼入Prompt → 生成。每个环节都能出一个追问</li>
+          <li><strong>Agent</strong> <span class="depth d2">L2</span>：ReAct模式（思考-行动-观察循环）、Function Calling / Tool Use、多Agent协作的现状与坑（错误累积、不可控）</li>
+          <li><strong>推理模型</strong> <span class="depth d2">L2</span>：o1 / R1类模型与普通模型的区别、Test-time Compute对产品设计的含义</li>
+        </ul>
+        <h4>三大增强路线选型（必背表）</h4>
+        <div class="tblwrap"><table>
+          <thead><tr><th>路线</th><th>解决什么问题</th><th>成本</th><th>不适用场景</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Prompt Engineering</strong></td><td>约束输出格式与风格、注入少量知识</td><td>几乎为零</td><td>知识量大、需稳定复现</td></tr>
+            <tr><td><strong>RAG 检索增强</strong></td><td>知识实时更新、可溯源、私有知识</td><td>低（工程为主）</td><td>改变模型"行为风格"</td></tr>
+            <tr><td><strong>微调 SFT</strong></td><td>固化行为模式、领域术语、稳定格式</td><td>高（数据 + 算力）</td><td>知识频繁变化</td></tr>
+          </tbody>
+        </table></div>
+        <div class="callout co-view"><div class="co-title">🎯 面试官视角</div>"微调还是RAG"是经典题，但真正拉开差距的是后半句——<strong>"预算有限、两周上线，怎么办？"</strong>（答：先Prompt + MVP验证需求真伪，再决定投入）。面试官要的是成本意识与节奏感，不是标准答案。</div>
+      </div></div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head"><span class="ico">👁️</span>多模态、CV与语音<span class="chev">▼</span></button>
+      <div class="acc-body"><div class="acc-body-in">
+        <ul>
+          <li><strong>CV核心任务</strong> <span class="depth d1">L1</span>：分类、检测、OCR、分割的能力边界</li>
+          <li><strong>多模态大模型</strong> <span class="depth d2">L2</span>：VLM原理直觉、文生图Diffusion基本原理、文生视频现状（可控性差、时长短、成本高）</li>
+          <li><strong>语音</strong> <span class="depth d1">L1</span>：ASR的WER、TTS的MOS评分；实时语音通话的延迟构成（ASR + LLM + TTS三段叠加）</li>
+        </ul>
+      </div></div>
+    </div>
+
+    <div class="acc reveal">
+      <button class="acc-head"><span class="ico">🧭</span>能力边界判断——最体现功力<span class="chev">▼</span></button>
+      <div class="acc-body"><div class="acc-body-in">
+        <p>对每个技术方向，能回答三问：<strong>① 现在能做到什么 ② 做不到什么 ③ 成本曲线如何</strong>。</p>
+        <p>例如："LLM数学推理仍脆弱、幻觉不可根除只能缓解；推理成本每年大幅下降，GPT-4级别能力两年内降价超90%"——能讲出成本趋势，说明你懂商业化前提。</p>
+      </div></div>
+    </div>
+  </div>
+
+  <h3>🎮 互动练习：技术选型决策器</h3>
+  <p class="sec-desc">模拟面试追问：根据场景回答2个问题，看看你是否选对了技术路线。</p>
+  <div class="quiz reveal" id="quizBox"></div>
+
+  <h3>🃏 核心概念闪卡（点击翻面自测）</h3>
+  <div class="flash reveal" id="flashCards"></div>
+</section>
+
+<!-- ================= 模块二 ================= -->
+<section id="m2">
+  <div class="sec-head"><span class="sec-num">MODULE 02</span><h2>AI产品方法论</h2></div>
+
+  <h3>需求分析：AI产品的三重验证</h3>
+  <div class="steps reveal">
+    <div class="step"><div><b>需求真实性</b><span>痛点是否成立、频次多高、现有替代方案是什么</span></div></div>
+    <div class="step"><div><b>技术可行性</b><span>当前模型能力能否支撑？90分可用、95分好用、99分才敢收费——"Demo惊艳"与"日常可用"之间有鸿沟</span></div></div>
+    <div class="step"><div><b>经济性</b><span>单次调用成本 × 预期调用量，能否算得过账（用模块三的计算器练习）</span></div></div>
+  </div>
+  <p><strong>效果兜底设计</strong>（AI产品特有，PRD必备一节）：模型答错时的产品策略——置信度阈值、降级方案、人工兜底、引用溯源让用户自查、免责声明。</p>
+
+  <h3>模型评估与优化（区别于传统PM的核心能力）</h3>
+  <div class="grid g3 reveal">
+    <div class="card"><span class="tag tag-blue">第一层</span><h4>客观指标</h4><p style="font-size:13.5px;color:var(--ink3)">准确率、召回率、F1；生成类BLEU / ROUGE——知道含义与局限：与人工感受相关性弱</p></div>
+    <div class="card"><span class="tag tag-blue">第二层</span><h4>人工评测</h4><p style="font-size:13.5px;color:var(--ink3)">标注规范设计、GSB对比评测（Good / Same / Bad）、Elo评分（竞技场模式）</p></div>
+    <div class="card"><span class="tag tag-blue">第三层</span><h4>LLM-as-Judge</h4><p style="font-size:13.5px;color:var(--ink3)">大模型当裁判；注意位置偏差、长度偏好、自家模型偏好，需人工抽检校准</p></div>
+  </div>
+
+  <h4>Badcase分析四步法（高频实操题）</h4>
+  <div class="steps reveal">
+    <div class="step"><div><b>分层抽样</b><span>按场景 / 意图分层，避免只看头部case</span></div></div>
+    <div class="step"><div><b>归因分类</b><span>数据问题 / Prompt问题 / 模型能力问题 / 产品设计问题</span></div></div>
+    <div class="step"><div><b>排优先级</b><span>按 影响面 × 修复成本 排序</span></div></div>
+    <div class="step"><div><b>回归验证</b><span>修复后跑评测集回归，确认无劣化</span></div></div>
+  </div>
+
+  <div class="callout co-view reveal"><div class="co-title">🎯 面试官视角</div>我必问："你怎么知道这个版本比上个版本好？"——能答出<strong>"离线评测集回归 + 小流量GSB人工评测 + 线上AB三层验证"</strong>的候选人，直接进入下一轮。</div>
+
+  <h3>数据驱动与数据闭环</h3>
+  <ul>
+    <li><strong>北极星指标</strong>：AI产品特有指标——任务完成率、采纳率（Copilot类）、人工接管率（客服类）、会话深度</li>
+    <li><strong>数据闭环</strong>：用户行为（点赞 / 点踩 / 采纳 / 改写 / 重试）回流为评测集与训练数据。<strong>这是AI产品最深的护城河</strong>：竞品可以抄功能，抄不走你的用户反馈飞轮</li>
+  </ul>
+
+  <h3>A/B测试的AI特殊性</h3>
+  <ul>
+    <li>模型输出有随机性，实验要控制Temperature</li>
+    <li>离线指标涨但线上不涨 → 优先怀疑<strong>数据分布偏移</strong></li>
+    <li>模型迭代用<strong>影子测试 + 灰度发布</strong>平滑迁移</li>
+  </ul>
+
+  <h3>AI产品生命周期</h3>
+  <div class="tblwrap reveal"><table>
+    <thead><tr><th>阶段</th><th>关键动作</th></tr></thead>
+    <tbody>
+      <tr><td><strong>0 → 1</strong></td><td>技术预研 → Prompt快速搭MVP验证 → <strong>评测体系先行</strong>（先于功能开发）→ 小流量灰度</td></tr>
+      <tr><td><strong>增长期</strong></td><td>成本优化（模型路由：简单问题走小模型、缓存命中、蒸馏小模型替换）、场景扩展</td></tr>
+      <tr><td><strong>双迭代节奏</strong></td><td>产品功能迭代（确定性排期）与模型能力迭代（不确定性排期）协同——给算法探索留buffer，用"功能解耦模型版本"的架构降低互相阻塞</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ================= 模块三 ================= -->
+<section id="m3">
+  <div class="sec-head"><span class="sec-num">MODULE 03</span><h2>行业应用场景与商业化</h2></div>
+  <p class="sec-desc">四大核心场景，每个准备1–2个可深聊的案例。点击Tab切换查看。</p>
+
+  <div class="tabs reveal" id="sceneTabs">
+    <button class="tab active" data-pane="s0">🔍 AI搜索</button>
+    <button class="tab" data-pane="s1">📱 推荐系统</button>
+    <button class="tab" data-pane="s2">💬 对话助手</button>
+    <button class="tab" data-pane="s3">🎨 AIGC内容生成</button>
+  </div>
+  <div class="tabpane active" id="s0"><div class="co-card">
+    <div class="co-name">🔍 AI搜索 <span class="tag tag-slate">Perplexity · 夸克 · Kimi探索版</span></div>
+    <dl>
+      <dt>必懂架构</dt><dd>搜索 + RAG范式、检索源质量与权威性排序、答案引用溯源</dd>
+      <dt>核心指标</dt><dd>首条满足率、引用点击率、答案采纳率</dd>
+      <dt>商业化</dt><dd>订阅制与广告模式天然冲突——答案直接给，广告位消失</dd>
+    </dl>
+  </div></div>
+  <div class="tabpane" id="s1"><div class="co-card">
+    <div class="co-name">📱 推荐系统 <span class="tag tag-slate">抖音 · 淘宝</span></div>
+    <dl>
+      <dt>必懂机制</dt><dd>召回 → 粗排 → 精排 → 重排；冷启动；EE探索与信息茧房；生成式推荐趋势</dd>
+      <dt>核心指标</dt><dd>CTR、停留时长、留存</dd>
+      <dt>商业化</dt><dd>广告变现效率</dd>
+    </dl>
+  </div></div>
+  <div class="tabpane" id="s2"><div class="co-card">
+    <div class="co-name">💬 对话助手 <span class="tag tag-slate">豆包 · Kimi · 元宝</span></div>
+    <dl>
+      <dt>必懂要点</dt><dd>通用助手留存率低的原因（场景不聚焦）；C端靠场景深耕，B端看转人工率与解决率；陪伴型产品的长期记忆与人设一致性设计</dd>
+      <dt>核心指标</dt><dd>留存、会话轮次、任务完成率</dd>
+      <dt>商业化</dt><dd>订阅 + API分成</dd>
+    </dl>
+  </div></div>
+  <div class="tabpane" id="s3"><div class="co-card">
+    <div class="co-name">🎨 AIGC内容生成 <span class="tag tag-slate">即梦 · 可灵 · Midjourney</span></div>
+    <dl>
+      <dt>必懂要点</dt><dd>场景拆解（续写 / 改写 / 摘要 / 翻译）；版权合规与内容安全审核（国内必考）；企业级：营销素材批量生成、数字人</dd>
+      <dt>核心指标</dt><dd>生成采纳率、修改率</dd>
+      <dt>商业化</dt><dd>按量计费 + 订阅 + 企业定制</dd>
+    </dl>
+  </div></div>
+
+  <h3>🧮 互动工具：推理成本计算器（估算题专项）</h3>
+  <p class="sec-desc">面试高频题："100万DAU的AI助手，每月推理成本多少？" 拖动滑块，建立成本直觉。</p>
+  <div class="calc reveal">
+    <div class="row"><label>日活跃用户 DAU <output id="oDau">100万</output></label>
+      <input type="range" id="rDau" min="1" max="1000" value="100"></div>
+    <div class="row"><label>人均日对话轮次 <output id="oTurn">10 轮</output></label>
+      <input type="range" id="rTurn" min="1" max="50" value="10"></div>
+    <div class="row"><label>每轮消耗 Token（输入+输出） <output id="oTok">1000</output></label>
+      <input type="range" id="rTok" min="200" max="8000" step="100" value="1000"></div>
+    <div class="row"><label>单价（元 / 百万Token） <output id="oPrice">¥2</output></label>
+      <input type="range" id="rPrice" min="1" max="60" value="2"></div>
+    <div class="out">
+      <div><b id="outDay">—</b><span>日消耗 Token</span></div>
+      <div><b id="outCost">—</b><span>月推理成本</span></div>
+      <div><b id="outPer">—</b><span>单用户月成本</span></div>
+    </div>
+    <p class="tip">💡 进阶追问"怎么降本"：模型路由（80%简单问题走小模型）、缓存高频问答、Prompt压缩、错峰批处理。<br>答题要点：数字不求精确，链条必须完整，每一步假设要敢说"我假设"。</p>
+  </div>
+
+  <h3>商业化要点</h3>
+  <ul>
+    <li><strong>商业模式</strong>：订阅（ChatGPT Plus / 豆包）、API按Token计费、企业版增值、AI+广告</li>
+    <li><strong>定价逻辑</strong>：成本加成 vs 价值定价；免费额度是转化漏斗的钩子，额度设计要算 LTV / CAC</li>
+    <li><strong>B端 vs C端</strong>：C端看规模效应与留存（推理成本随DAU线性涨，毛利模型是核心难题）；B端看交付成本与续费率</li>
+    <li><strong>合规</strong>：国内《生成式人工智能服务管理暂行办法》备案要求、内容安全审核链路——B端面试必考</li>
+  </ul>
+</section>
+
+<!-- ================= 模块四 ================= -->
+<section id="m4">
+  <div class="sec-head"><span class="sec-num">MODULE 04</span><h2>跨团队协作能力</h2></div>
+
+  <div class="grid g3 reveal">
+    <div class="card"><h4>🧪 与算法工程师</h4>
+      <ul style="font-size:13.5px;color:var(--ink3)">
+        <li><strong>听懂黑话</strong>：Loss不收敛、分布偏移、模型漂移、Badcase归因</li>
+        <li><strong>需求翻译</strong>："回答太啰嗦" → "控制输出长度分布——SFT数据约束或系统提示词，两周内哪个可行？"</li>
+        <li><strong>预期管理</strong>：问"成功率多少、备选方案、最坏情况的兜底"</li>
+      </ul></div>
+    <div class="card"><h4>📊 与数据团队</h4>
+      <ul style="font-size:13.5px;color:var(--ink3)">
+        <li>标注规范撰写、标注一致性抽检</li>
+        <li>训练集 / 评测集配比与去重</li>
+        <li>数据配比（领域 / 语言分布）对模型行为的影响</li>
+      </ul></div>
+    <div class="card"><h4>⚙️ 与工程团队</h4>
+      <ul style="font-size:13.5px;color:var(--ink3)">
+        <li>推理服务架构、并发与限流、流式输出</li>
+        <li>延迟构成：网络 + TTFT + TPS——用户喊"卡"时知道先查哪一环</li>
+      </ul></div>
+  </div>
+
+  <div class="callout co-view reveal"><div class="co-title">🎯 行为面必考冲突题</div>"算法同学说你要的效果做不到，怎么办？"四步走：<strong>拆解需求（是否可降精度）→ 换技术路线（RAG不行试微调）→ 调整产品形态（全自动改人机协同）→ 都不通则砍需求并同步stakeholders</strong>。答出"调整产品形态"这一层的候选人极少，答出来就是亮点。</div>
+</section>
+
+<!-- ================= 模块五 ================= -->
+<section id="m5">
+  <div class="sec-head"><span class="sec-num">MODULE 05</span><h2>面试核心考察点与实战题库</h2><span class="tag tag-red">冲刺阶段重点</span></div>
+
+  <h3>📐 产品设计题七步答题框架</h3>
+  <div class="steps reveal" id="framework7">
+    <div class="step"><div><b>用户与场景</b><span>谁、在什么场景、现有替代方案为什么不满意</span></div></div>
+    <div class="step"><div><b>痛点量化</b><span>频次 × 痛度 × 人群规模</span></div></div>
+    <div class="step"><div><b>AI必要性判断</b><span>为什么非AI不可？传统方案能不能解决——先证伪再立项</span></div></div>
+    <div class="step"><div><b>方案设计</b><span>核心功能 + 技术路线（Prompt / RAG / 微调 / Agent）+ 效果兜底</span></div></div>
+    <div class="step"><div><b>评估指标</b><span>离线评测 + 线上北极星指标</span></div></div>
+    <div class="step"><div><b>成本与商业模式</b><span>单次成本估算、变现路径</span></div></div>
+    <div class="step"><div><b>风险</b><span>幻觉、合规、数据安全、竞品</span></div></div>
+  </div>
+  <div class="callout co-trap reveal"><div class="co-title">⚠️ 扣分项</div>直接跳到第④步讲功能，是产品设计题挂掉的第一原因。面试官要看的恰恰是①②③的思考过程——功能谁都会想，判断不是谁都做得对。</div>
+
+  <h3>📚 高频题库（点击展开答题要点，可按类型筛选）</h3>
+  <div class="qbank reveal">
+    <div class="filters" id="qFilters">
+      <button class="tab active" data-cat="all">全部</button>
+      <button class="tab" data-cat="tech">技术认知</button>
+      <button class="tab" data-cat="design">产品设计</button>
+      <button class="tab" data-cat="eval">评估与数据</button>
+      <button class="tab" data-cat="industry">行业洞察</button>
+      <button class="tab" data-cat="motive">转行动机</button>
+    </div>
+    <div id="qList"></div>
+  </div>
+
+  <h3>🏢 公司差异化准备</h3>
+  <div class="tabs reveal" id="coTabs">
+    <button class="tab active" data-pane="c0">字节跳动</button>
+    <button class="tab" data-pane="c1">智谱</button>
+    <button class="tab" data-pane="c2">Moonshot</button>
+    <button class="tab" data-pane="c3">腾讯</button>
+    <button class="tab" data-pane="c4">阿里</button>
+  </div>
+  <div class="tabpane active" id="c0"><div class="co-card"><div class="co-name">字节跳动 <span class="tag tag-slate">豆包 · 扣子</span></div>
+    <dl><dt>考察偏好</dt><dd>场景洞察、增长与留存、数据实验文化、执行力</dd>
+    <dt>针对性准备</dt><dd>准备增长案例；熟悉A/B实验细节；聊豆包与扣子的产品拆解</dd></dl></div></div>
+  <div class="tabpane" id="c1"><div class="co-card"><div class="co-name">智谱 <span class="tag tag-slate">GLM · 开放平台</span></div>
+    <dl><dt>考察偏好</dt><dd>技术理解深、B端 / API产品思维、开源生态</dd>
+    <dt>针对性准备</dt><dd>深读GLM技术博客；准备API平台定价 / 开发者体验话题</dd></dl></div></div>
+  <div class="tabpane" id="c2"><div class="co-card"><div class="co-name">Moonshot（Kimi） <span class="tag tag-slate">长文本 · 推理模型</span></div>
+    <dl><dt>考察偏好</dt><dd>技术品味、长文本 / 推理等前沿理解、C端产品sense</dd>
+    <dt>针对性准备</dt><dd>体验Kimi最新功能并能提改进；聊长上下文与推理模型趋势</dd></dl></div></div>
+  <div class="tabpane" id="c3"><div class="co-card"><div class="co-name">腾讯 <span class="tag tag-slate">元宝 · 混元</span></div>
+    <dl><dt>考察偏好</dt><dd>生态协同（微信场景）、稳健落地、合规意识</dd>
+    <dt>针对性准备</dt><dd>思考AI如何嵌入微信 / 游戏 / 内容生态</dd></dl></div></div>
+  <div class="tabpane" id="c4"><div class="co-card"><div class="co-name">阿里 <span class="tag tag-slate">通义 · 夸克</span></div>
+    <dl><dt>考察偏好</dt><dd>商业化能力、电商与云场景结合</dd>
+    <dt>针对性准备</dt><dd>准备AI+电商 / 云API商业化的案例</dd></dl></div></div>
+
+  <h3>🏆 作品集：转行者的胜负手</h3>
+  <div class="steps reveal">
+    <div class="step"><div><b>一个动手作品（最重要）</b><span>用扣子 / Dify搭Agent，或API + Cursor做AI小工具。必须能讲清：需求来源 → 技术选型 → Prompt设计迭代 → 评测方法 → Badcase改进。价值不在复杂，而在能复盘每个决策</span></div></div>
+    <div class="step"><div><b>一次评测实践</b><span>对某AI产品做50–100条case的系统评测，输出Badcase归因报告——在智谱、Moonshot这类公司极其加分，因为这就是日常工作的样子</span></div></div>
+    <div class="step"><div><b>三份产品拆解</b><span>1个C端（豆包 / Kimi）+ 1个B端（客服SaaS / API平台）+ 1个垂直场景（AI教育 / 医疗），用统一框架输出</span></div></div>
+    <div class="step"><div><b>行业信息源</b><span>机器之心、量子位、晚点LatePost；追每周新模型发布——能聊"上周XX发布的模型意味着什么"，直接证明你是圈内人</span></div></div>
+  </div>
+  <div class="callout co-trap reveal"><div class="co-title">⚠️ 扣分项</div>简历写"熟悉大模型原理"但没有任何作品或输出物。面试官默认：没作品 = 没动手 = 学习意愿存疑。一份粗糙但真实的作品，胜过十条自我评价。</div>
+</section>
+
+<!-- ================= 模块六 ================= -->
+<section id="m6">
+  <div class="sec-head"><span class="sec-num">MODULE 06</span><h2>12周学习路线图</h2></div>
+  <p class="sec-desc">每日投入：工作日2小时输入 + 周末4小时输出。<strong>输出大于输入</strong>——看十篇文章不如写一份拆解报告。勾选下面的清单追踪进度（自动保存在本地）。</p>
+
+  <div class="progress-wrap reveal">
+    <span style="font-weight:700;font-size:14px">学习进度</span>
+    <div class="progress-bar"><div class="progress-fill" id="pFill"></div></div>
+    <div class="progress-num" id="pNum">0%</div>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="tl-item"><span class="tl-tag">第 1–3 周 · 筑基期</span><h4>技术基础</h4><p>模块一全部内容，达到标注深度。检查点：能脱稿讲LLM训练全流程</p></div>
+    <div class="tl-item"><span class="tl-tag">第 4–6 周 · 方法期</span><h4>方法论 + 作品启动</h4><p>模块二；同步启动动手作品。检查点：评测方案文档 + 作品v1上线。第6周起可先投非目标公司练手</p></div>
+    <div class="tl-item"><span class="tl-tag">第 7–9 周 · 场景期</span><h4>场景案例 + 估算题</h4><p>模块三案例研究。检查点：2–3份产品拆解报告 + 10道估算题练手</p></div>
+    <div class="tl-item"><span class="tl-tag">第 10–12 周 · 冲刺期</span><h4>面试冲刺</h4><p>模块四、五：逐字稿 + 模拟面试。检查点：Q&A逐字稿 + 作品集定稿 + 3场模拟面试复盘。第8–10周后再投目标公司</p></div>
+  </div>
+
+  <h3>✅ 学习清单（点击勾选，进度自动保存）</h3>
+  <div class="check-list reveal" id="checkList"></div>
+</section>
+
+<!-- ================= 结语 ================= -->
+<section id="m7">
+  <div class="sec-head"><span class="sec-num">FINAL</span><h2>面试官的最后三条忠告</h2></div>
+  <div class="grid g3 reveal">
+    <div class="card"><div class="bignum">1</div><h4>建立"技术边界感"</h4><p style="font-size:13.5px;color:var(--ink3)">AIPM与普通PM的分水岭。面对任何需求，第一反应是"模型现在能做到什么程度、成本多少、如何评估"。养成这个肌肉记忆，面试成功一半。</p></div>
+    <div class="card"><div class="bignum">2</div><h4>三层证明法</h4><p style="font-size:13.5px;color:var(--ink3)">用作品证明意愿，用框架证明思维，用细节证明经验。转行者最大的翻盘武器是"做得比在职的人还认真"。</p></div>
+    <div class="card"><div class="bignum">3</div><h4>诚实 + 方法论</h4><p style="font-size:13.5px;color:var(--ink3)">不懂就说不懂，然后给出你会怎么搞清楚。面试官宁可要诚实+有方法论的候选人——硬撑在技术追问下30秒必然暴露。</p></div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  AI产品经理面试学习指南 · 交互版 &nbsp;|&nbsp; 基于头部企业岗位要求的转行学习路线<br>
+  祝你转型顺利 🚀
+</footer>
+
+<button id="toTop" title="回到顶部">↑</button>
+
+<!-- ================= 设置模块 ================= -->
+<button id="settingsBtn" title="外观设置">⚙️</button>
+<div id="settingsMask"></div>
+<aside id="settingsPanel" aria-label="外观设置">
+  <div class="sp-head"><b>⚙️ 外观设置</b><button class="sp-close" id="settingsClose">✕</button></div>
+  <div class="sp-body">
+    <div class="sp-sec">
+      <h5>主题色</h5>
+      <div class="swatches" id="swatches">
+        <button class="swatch" data-theme="blue">
+          <span class="dotset"><i style="background:#2563EB"></i><i style="background:#7c3aed"></i></span>
+          <span>经典蓝</span><span class="ck">✓</span>
+        </button>
+        <button class="swatch" data-theme="violet">
+          <span class="dotset"><i style="background:#7c3aed"></i><i style="background:#db2777"></i></span>
+          <span>紫罗兰</span><span class="ck">✓</span>
+        </button>
+        <button class="swatch" data-theme="emerald">
+          <span class="dotset"><i style="background:#059669"></i><i style="background:#0d9488"></i></span>
+          <span>翡翠绿</span><span class="ck">✓</span>
+        </button>
+        <button class="swatch" data-theme="sunset">
+          <span class="dotset"><i style="background:#ea580c"></i><i style="background:#dc2626"></i></span>
+          <span>落日橙</span><span class="ck">✓</span>
+        </button>
+      </div>
+    </div>
+    <div class="sp-sec">
+      <h5>字号</h5>
+      <div class="seg" id="fontSeg">
+        <button data-font="small">偏小</button>
+        <button data-font="default">标准</button>
+        <button data-font="large">偏大</button>
+      </div>
+    </div>
+    <div class="sp-sec">
+      <h5>动效</h5>
+      <div class="switch-row">
+        <div class="lbl">减少动画效果<small>关闭滚动入场与过渡动画，提升低端设备流畅度</small></div>
+        <span class="switch"><input type="checkbox" id="motionToggle"><span class="track"></span></span>
+      </div>
+    </div>
+    <div class="sp-sec">
+      <button class="sp-reset" id="settingsReset">恢复默认设置</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* ============ 数据 ============ */
+const JOBS=[
+ {name:"模型产品经理",focus:"技术理解极深、评测体系、数据策略——需要能跟研究员讨论模型能力 roadmap",style:"上来就是技术追问：预训练数据配比、RLHF细节、评测集怎么建。产品题反而少",advice:"⚠️ 慎投，通常要求算法背景。除非你有技术履历，否则不要把它作为第一目标"},
+ {name:"AI应用产品经理（C端）",focus:"场景洞察、增长留存、体验设计、评测sense——懂技术但更重产品判断",style:"产品设计题 + 行业洞察为主，技术考察停留在'能对话'层级",advice:"✅ 转行者首选。用七步框架准备2-3个设计题，带上动手作品"},
+ {name:"AI平台 / API产品经理",focus:"开发者需求、计费定价、解决方案能力、生态建设",style:"偏B端：定价模型、开发者体验、客户成功案例",advice:"有B端/SaaS经验者友好。重点准备Token计费与API产品设计话题"},
+ {name:"AI+业务产品经理",focus:"业务理解 + AI赋能点挖掘——AI是手段，业务指标是目的",style:"从业务场景切入：'你觉得我们XX业务哪里能用AI改造？'",advice:"有对应行业经验者首选。把你过去的行业积累变成差异化优势"}
+];
+
+const QUIZ=[
+ {q:"场景：企业内部知识库问答，文档每周更新，要求答案可溯源到原文。第一步该选什么路线？",
+  opts:[{t:"微调一个领域模型，把文档喂进去训练",ok:false,f:"❌ 知识每周更新，微调后模型'记不住'新文档，且无法溯源。知识频繁变化是微调最典型的不适用场景。"},
+        {t:"RAG：文档切分向量化，检索后拼入Prompt生成，附引用",ok:true,f:"✅ 正确！知识实时更新 + 可溯源 + 私有知识，是RAG的教科书场景。成本也以工程为主，无需训练。"},
+        {t:"设计一个超长的系统提示词，把核心文档塞进去",ok:false,f:"❌ 企业知识库量级远超上下文窗口，且每次全量塞入成本极高。Prompt只适合少量、稳定的知识注入。"}]},
+ {q:"追问：模型回答风格不统一、输出格式经常不符合下游系统要求，RAG解决不了，怎么办？",
+  opts:[{t:"换更大的基座模型",ok:false,f:"❌ 换模型不能稳定保证格式与风格，且成本上升。这是'行为固化'问题，不是能力问题。"},
+        {t:"SFT微调：用标准问答对固化输出格式与风格",ok:true,f:"✅ 正确！改变模型'行为风格'、固化格式是微调的主场。组合拳：RAG管知识，SFT管行为。"},
+        {t:"继续堆Prompt，把所有格式要求写进去",ok:false,f:"⚠️ 短期可行但不稳定——长Prompt挤占上下文、提高成本，格式遵循率仍不如微调。可作为过渡方案，但不是终局。"}]}
+];
+
+const FLASH=[
+ ["Transformer","靠<b>自注意力机制</b>让每个词动态关注上下文中最相关的词；并行计算 + 长程依赖，取代RNN成为LLM基座"],
+ ["RLHF","用人类偏好训练奖励模型，再用强化学习对齐LLM——让回答<b>有用、无害、诚实</b>。DPO以更稳定便宜的方式部分替代它"],
+ ["RAG","检索增强生成：切分→向量化→检索→重排→拼Prompt→生成。解决<b>知识更新、可溯源、私有知识</b>三大问题"],
+ ["幻觉","LLM本质是概率生成而非数据库查询，幻觉<b>不可根除只能缓解</b>：RAG、引用溯源、置信度外显、人工兜底"],
+ ["Token","模型计费与处理的最小单位。成本核算基本功：<b>输入/输出分开计价</b>，输出通常更贵"],
+ ["TTFT / TPS","首Token延迟 + 每秒生成Token数。用户喊'卡'，先定位是<b>网络、TTFT还是TPS</b>的问题"],
+ ["GSB评测","Good / Same / Bad 人工对比评测——判断新模型是否优于旧模型的<b>金标准之一</b>"],
+ ["数据闭环","用户反馈（赞/踩/采纳/改写）回流为评测集与训练数据——AI产品<b>最深的护城河</b>"]
+];
+
+const QUESTIONS=[
+ {c:"tech",cl:"tag-blue",cn:"技术认知",q:"讲讲你对 Transformer / RLHF / RAG 的理解",a:"按L2-L3深度作答。追问预备：RLHF为什么能被DPO部分替代？（更稳定、更便宜）RAG召回率低怎么排查？（切分粒度、向量化模型、混合检索、Rerank四层排查）"},
+ {c:"tech",cl:"tag-blue",cn:"技术认知",q:"大模型幻觉怎么解决？产品经理能做什么、不能做什么？",a:"能：RAG接入、引用溯源设计、置信度外显、人工兜底流程、免责声明。不能：幻觉不可根除（概率生成本质）——说出这句话比堆方案更加分。"},
+ {c:"tech",cl:"tag-blue",cn:"技术认知",q:"Agent产品的技术架构？现在落地卡在什么地方？",a:"ReAct循环 + Tool Use + 规划反思。卡点：错误累积、成本、延迟、用户信任。能讲出'错误累积'说明真懂。"},
+ {c:"tech",cl:"tag-blue",cn:"技术认知",q:"微调和RAG怎么选？",a:"知识频繁更新/需溯源→RAG；固化行为风格/稳定格式→微调；预算紧→先Prompt+MVP。记得补成本与节奏感。"},
+ {c:"design",cl:"tag-amber",cn:"产品设计",q:"设计一个AI面试助手 / 面向XX人群的AI学习产品",a:"用七步框架：用户场景→痛点量化→AI必要性→方案（含兜底）→评估指标→成本与商业模式→风险。切忌直接跳到功能。"},
+ {c:"design",cl:"tag-amber",cn:"产品设计",q:"如果让你负责豆包 / Kimi，你下一步做什么？",a:"先讲对产品现状的判断（留存、场景、竞品位置），再讲动作——考察产品sense而非脑洞。"},
+ {c:"design",cl:"tag-amber",cn:"产品设计",q:"如何提升XX产品的留存？",a:"先拆留存差的原因（场景不聚焦？价值感知弱？），再给分层策略：新用户激活、场景深耕、数据闭环驱动的个性化。"},
+ {c:"eval",cl:"tag-green",cn:"评估与数据",q:"如何评估一个AI客服的好坏？",a:"线上：转人工率、解决率、会话时长、满意度；离线：评测集回归。提GSB和LLM-as-Judge加分。"},
+ {c:"eval",cl:"tag-green",cn:"评估与数据",q:"上线后Badcase激增，处理流程？",a:"四步法：分层抽样→归因分类（数据/Prompt/模型/产品设计）→按影响面×修复成本排优先级→回归验证。"},
+ {c:"eval",cl:"tag-green",cn:"评估与数据",q:"设计A/B测试验证新模型效果，注意什么？",a:"控制Temperature消除随机性干扰；样本量与显著性；离线涨线上不涨→查数据分布偏移；影子测试+灰度平滑迁移。"},
+ {c:"industry",cl:"tag-slate",cn:"行业洞察",q:"你怎么看AI搜索对传统搜索的替代？",a:"替代的是'找答案'场景，替代不了'逛'和本地生活。再补商业化冲突（广告位消失）显深度。"},
+ {c:"industry",cl:"tag-slate",cn:"行业洞察",q:"大模型价格战怎么看？",a:"推理成本下降红利 + 获客手段，利好应用层。能引'GPT-4级能力两年降价超90%'更有说服力。"},
+ {c:"industry",cl:"tag-slate",cn:"行业洞察",q:"挑一个你常用的AI产品说优缺点和改进建议",a:"必考题！准备3个产品的深度拆解（1个C端+1个B端+1个垂直场景），用统一框架：定位→核心场景→体验亮点→问题→改进。"},
+ {c:"motive",cl:"tag-red",cn:"转行动机",q:"为什么转行做AI产品？之前的经验怎么迁移？",a:"动机要具体到事件（哪次使用AI产品的震撼/哪个项目的启发）；迁移要落到能力映射（需求分析→AI需求三重验证等）。"},
+ {c:"motive",cl:"tag-red",cn:"转行动机",q:"你为转行做了哪些准备？",a:"唯一不接受空谈的问题。用学习成果 + 动手作品回答：作品、评测实践、产品拆解报告、信息源习惯。"}
+];
+
+const CHECKS=[
+ ["w1","第1-3周","能脱稿讲清LLM训练全流程（预训练→SFT→RLHF/DPO）"],
+ ["w2","第1-3周","掌握Embedding原理并能解释RAG完整链路"],
+ ["w3","第1-3周","完成技术概念自查清单（L1/L2/L3达标）"],
+ ["w4","第4-6周","动手作品v1上线（扣子/Dify/自研均可）"],
+ ["w5","第4-6周","写出作品的技术选型说明（为什么RAG不微调）"],
+ ["w6","第4-6周","输出一份评测方案文档（含Golden Set设计）"],
+ ["w7","第7-9周","完成2-3份产品拆解报告（C端+B端+垂直场景）"],
+ ["w8","第7-9周","练熟10道估算题（推理成本/市场规模）"],
+ ["w9","第7-9周","完成一次真实产品的Badcase评测实践（50-100条case）"],
+ ["w10","第10-12周","写完高频题Q&A逐字稿（按五大类）"],
+ ["w11","第10-12周","完成3场模拟面试并复盘"],
+ ["w12","第10-12周","作品集定稿，投递目标公司"]
+];
+
+/* ============ 工具 ============ */
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+/* 进度条 + 回顶 */
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement, p=h.scrollTop/(h.scrollHeight-h.clientHeight);
+  $('#pbar').style.width=(p*100)+'%';
+  $('#toTop').classList.toggle('show',h.scrollTop>600);
+});
+$('#toTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+
+/* scroll-spy */
+const secs=$$('section'), links=$$('.navlink');
+const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+  links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+}})},{rootMargin:'-30% 0px -60% 0px'});
+secs.forEach(s=>spy.observe(s));
+
+/* 入场动画 */
+const rev=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rev.unobserve(e.target)}})},{threshold:.08});
+$$('.reveal').forEach(el=>rev.observe(el));
+
+/* 岗位卡片 */
+$('#jobTypes').addEventListener('click',e=>{
+  const card=e.target.closest('[data-job]'); if(!card)return;
+  const j=JOBS[+card.dataset.job], d=$('#jobDetail');
+  $('#jd-name').textContent=j.name; $('#jd-focus').textContent=j.focus;
+  $('#jd-style').textContent=j.style; $('#jd-advice').textContent=j.advice;
+  d.style.display='block';
+  $$('#jobTypes .card').forEach(c=>c.style.borderColor='');
+  card.style.borderColor='var(--accent)';
+});
+
+/* 手风琴 */
+function bindAcc(headSel,bodySel){
+  $$(headSel).forEach(h=>h.addEventListener('click',()=>{
+    const item=h.parentElement, body=item.querySelector(bodySel), open=item.classList.toggle('open');
+    body.style.maxHeight=open?body.scrollHeight+'px':0;
+  }));
+}
+bindAcc('.acc-head','.acc-body');
+
+/* Tabs */
+function bindTabs(tabId){
+  const t=$(tabId); if(!t)return;
+  t.addEventListener('click',e=>{
+    const b=e.target.closest('.tab'); if(!b||!b.dataset.pane)return;
+    t.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    const parent=t.parentElement;
+    parent.querySelectorAll('.tabpane').forEach(p=>p.classList.toggle('active',p.id===b.dataset.pane));
+  });
+}
+bindTabs('#sceneTabs'); bindTabs('#coTabs');
+
+/* 决策器 */
+let qStep=0;
+function renderQuiz(){
+  const box=$('#quizBox');
+  if(qStep>=QUIZ.length){qStep=0;}
+  const q=QUIZ[qStep];
+  box.innerHTML=`<div class="crumb">第 ${qStep+1} / ${QUIZ.length} 题</div><div class="q">${q.q}</div>
+    <div class="opts">${q.opts.map((o,i)=>`<button class="opt" data-i="${i}">${o.t}</button>`).join('')}</div>
+    <div class="fb"></div>`;
+}
+$('#quizBox').addEventListener('click',e=>{
+  const b=e.target.closest('.opt'); if(!b)return;
+  const o=QUIZ[qStep].opts[+b.dataset.i], fb=$('#quizBox .fb');
+  fb.innerHTML=`<div class="callout ${o.ok?'co-frame':'co-trap'}" style="margin-top:16px"><div class="co-title">${o.ok?'✅ 回答正确':'⚠️ 再想想'}</div>${o.f}</div>
+    ${o.ok&&qStep<QUIZ.length-1?'<button class="btn btn-primary" id="qNext" style="margin-top:10px">进入追问 →</button>':''}
+    ${o.ok&&qStep===QUIZ.length-1?'<button class="btn btn-primary" id="qAgain" style="margin-top:10px">再练一遍</button>':''}`;
+  if(o.ok){b.style.borderColor='var(--green)';b.style.background='var(--green-bg)';}
+  else{b.style.borderColor='var(--red)';b.style.background='var(--red-bg)';}
+});
+$('#quizBox').addEventListener('click',e=>{
+  if(e.target.id==='qNext'){qStep++;renderQuiz();}
+  if(e.target.id==='qAgain'){qStep=0;renderQuiz();}
+});
+renderQuiz();
+
+/* 闪卡 */
+$('#flashCards').innerHTML=FLASH.map(([t,b])=>`
+  <div class="fc"><div class="face front"><div class="term">${t}</div><div class="hint">点击翻面查看要点</div></div>
+  <div class="face back">${b}</div></div>`).join('');
+$('#flashCards').addEventListener('click',e=>{
+  const fc=e.target.closest('.fc'); if(fc)fc.classList.toggle('flipped');
+});
+
+/* 计算器 */
+function fmtWan(n){return n>=1e8?(n/1e8).toFixed(1)+'亿':n>=1e4?(n/1e4).toFixed(0)+'万':n}
+function calc(){
+  const dau=+$('#rDau').value*1e4, turn=+$('#rTurn').value, tok=+$('#rTok').value, price=+$('#rPrice').value;
+  $('#oDau').textContent=fmtWan(dau); $('#oTurn').textContent=turn+' 轮';
+  $('#oTok').textContent=tok; $('#oPrice').textContent='¥'+price;
+  const dayTok=dau*turn*tok, monthCost=dayTok/1e6*price*30;
+  $('#outDay').textContent=fmtWan(dayTok);
+  $('#outCost').textContent=monthCost>=1e4?'¥'+(monthCost/1e4).toFixed(1)+'万':'¥'+monthCost.toFixed(0);
+  $('#outPer').textContent='¥'+(monthCost/dau).toFixed(3);
+}
+['rDau','rTurn','rTok','rPrice'].forEach(id=>$('#'+id).addEventListener('input',calc));
+calc();
+
+/* 题库 */
+function renderQ(cat){
+  $('#qList').innerHTML=QUESTIONS.filter(q=>cat==='all'||q.c===cat).map(q=>`
+    <div class="qcard" data-cat="${q.c}">
+      <button class="q-head"><span class="cat tag ${q.cl}">${q.cn}</span>${q.q}<span class="chev">▼</span></button>
+      <div class="ans"><div class="ans-in"><strong>答题要点：</strong>${q.a}</div></div>
+    </div>`).join('');
+}
+renderQ('all');
+$('#qFilters').addEventListener('click',e=>{
+  const b=e.target.closest('.tab'); if(!b)return;
+  $$('#qFilters .tab').forEach(t=>t.classList.remove('active')); b.classList.add('active');
+  renderQ(b.dataset.cat);
+});
+$('#qList').addEventListener('click',e=>{
+  const h=e.target.closest('.q-head'); if(!h)return;
+  const c=h.parentElement, ans=c.querySelector('.ans'), open=c.classList.toggle('open');
+  ans.style.maxHeight=open?ans.scrollHeight+'px':0;
+});
+
+/* 清单 + localStorage */
+const saved=JSON.parse(localStorage.getItem('aipm_checks')||'{}');
+$('#checkList').innerHTML=CHECKS.map(([id,wk,txt])=>`
+  <div class="check-item ${saved[id]?'done':''}" data-id="${id}">
+    <span class="box">${saved[id]?'✓':''}</span><span class="wk">${wk}</span><span class="txt">${txt}</span>
+  </div>`).join('');
+function updateProgress(){
+  const done=$$('.check-item.done').length, pct=Math.round(done/CHECKS.length*100);
+  $('#pFill').style.width=pct+'%'; $('#pNum').textContent=pct+'%';
+}
+$('#checkList').addEventListener('click',e=>{
+  const it=e.target.closest('.check-item'); if(!it)return;
+  it.classList.toggle('done');
+  it.querySelector('.box').textContent=it.classList.contains('done')?'✓':'';
+  const s=JSON.parse(localStorage.getItem('aipm_checks')||'{}');
+  s[it.dataset.id]=it.classList.contains('done');
+  localStorage.setItem('aipm_checks',JSON.stringify(s));
+  updateProgress();
+});
+updateProgress();
+
+/* ============ 设置模块 ============ */
+const PREF_KEY='aipm_appearance';
+const prefs=Object.assign({theme:'blue',font:'default',motion:'on'},JSON.parse(localStorage.getItem(PREF_KEY)||'{}'));
+const rootEl=document.documentElement;
+
+function applyPrefs(){
+  rootEl.dataset.theme=prefs.theme;
+  if(prefs.font==='default'){delete rootEl.dataset.font;}else{rootEl.dataset.font=prefs.font;}
+  rootEl.dataset.motion=prefs.motion;
+  $$('#swatches .swatch').forEach(s=>s.classList.toggle('active',s.dataset.theme===prefs.theme));
+  $$('#fontSeg button').forEach(b=>b.classList.toggle('active',b.dataset.font===prefs.font));
+  $('#motionToggle').checked=(prefs.motion==='off');
+  localStorage.setItem(PREF_KEY,JSON.stringify(prefs));
+}
+applyPrefs();
+
+const panel=$('#settingsPanel'),mask=$('#settingsMask'),sBtn=$('#settingsBtn');
+function openSettings(o){
+  panel.classList.toggle('show',o); mask.classList.toggle('show',o); sBtn.classList.toggle('open',o);
+  document.body.style.overflow=o?'hidden':'';
+}
+sBtn.onclick=()=>openSettings(!panel.classList.contains('show'));
+mask.onclick=()=>openSettings(false);
+$('#settingsClose').onclick=()=>openSettings(false);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')openSettings(false);});
+
+$('#swatches').addEventListener('click',e=>{
+  const s=e.target.closest('.swatch'); if(!s)return;
+  prefs.theme=s.dataset.theme; applyPrefs();
+});
+$('#fontSeg').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  prefs.font=b.dataset.font; applyPrefs();
+});
+$('#motionToggle').addEventListener('change',e=>{
+  prefs.motion=e.target.checked?'off':'on'; applyPrefs();
+});
+$('#settingsReset').onclick=()=>{
+  Object.assign(prefs,{theme:'blue',font:'default',motion:'on'}); applyPrefs();
+};
+/* 移动端：下滑关闭设置面板 */
+let touchY=null;
+panel.addEventListener('touchstart',e=>{touchY=e.touches[0].clientY},{passive:true});
+panel.addEventListener('touchend',e=>{
+  if(touchY!==null&&e.changedTouches[0].clientY-touchY>80&&panel.scrollTop<=0)openSettings(false);
+  touchY=null;
+},{passive:true});
+</script>
+</body>
+</html>

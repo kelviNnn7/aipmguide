@@ -81,7 +81,7 @@ textarea, input { color: var(--ink); }
   animation: auroraDrift 12s ease-in-out infinite alternate;
   z-index: -1;
 }
-.hero-art { position: absolute; inset: 14px 0 auto; display: flex; justify-content: center; pointer-events: none; opacity: .10; transform: translateY(-26px) scale(1.08); filter: grayscale(.1) saturate(.7) blur(.2px); }
+.hero-art { position: absolute; inset: 14px 0 auto; display: flex; justify-content: center; pointer-events: none; opacity: .12; transform: translateY(-26px) scale(1.08); filter: grayscale(.1) saturate(.7) blur(.2px); }
 .hero-art img { width: min(1120px, 96vw); height: auto; }
 .hero .wrap { position: relative; z-index: 1; padding-top: 70px; }
 .hero-copy {
@@ -341,7 +341,7 @@ footer { margin-top: 80px; border-top: 1px solid var(--line); padding: 36px 0; t
   .wrap { padding: 0 18px; }
   .hero { padding: 70px 0 48px; min-height: auto; }
   .hero::after { inset: 72px 0 auto; height: 260px; filter: blur(28px); opacity: .58; }
-  .hero-art { opacity: .08; top: 18px; transform: translateY(0) scale(1.18); }
+  .hero-art { opacity: .096; top: 18px; transform: translateY(0) scale(1.18); }
   .hero .wrap { padding-top: 0; }
   .hero-copy { padding: 22px 8px 12px; }
   .hero-copy::before { width: 104vw; height: 220px; }

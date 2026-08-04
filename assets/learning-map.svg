@@ -9,6 +9,8 @@
       .node-c { animation-delay: -4s; }
       .node-d { animation-delay: -5.6s; }
       .node rect { animation: cardGlow 7s ease-in-out infinite; }
+      .node text:first-of-type { fill: #020617; font-weight: 850; }
+      .node text:last-of-type { fill: #334155; font-weight: 650; }
       .node-b rect, .node-d rect { animation-delay: -2s; }
       .link { animation: linkPulse 6s ease-in-out infinite; }
       @keyframes floatNode {

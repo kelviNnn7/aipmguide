@@ -2,6 +2,31 @@
   <title id="title">AI产品经理学习地图</title>
   <desc id="desc">技术、产品、评估、商业和协作五条能力线汇聚到面试表达。</desc>
   <defs>
+    <style>
+      .node { transform-box: fill-box; transform-origin: center; animation: floatNode 8s ease-in-out infinite; }
+      .node-a { animation-delay: -.8s; }
+      .node-b { animation-delay: -2.4s; }
+      .node-c { animation-delay: -4s; }
+      .node-d { animation-delay: -5.6s; }
+      .node rect { animation: cardGlow 7s ease-in-out infinite; }
+      .node-b rect, .node-d rect { animation-delay: -2s; }
+      .link { animation: linkPulse 6s ease-in-out infinite; }
+      @keyframes floatNode {
+        0%, 100% { transform: translateY(0); opacity: .92; }
+        50% { transform: translateY(-8px); opacity: 1; }
+      }
+      @keyframes cardGlow {
+        0%, 100% { stroke-opacity: .78; }
+        50% { stroke-opacity: 1; }
+      }
+      @keyframes linkPulse {
+        0%, 100% { stroke-opacity: .62; }
+        50% { stroke-opacity: 1; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .node, .node rect, .link { animation: none; }
+      }
+    </style>
     <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
       <stop stop-color="#2563eb"/>
       <stop offset=".55" stop-color="#7c3aed"/>
@@ -17,23 +42,31 @@
     <path d="M82 178c142-82 270 90 405 12s234-80 384 18" fill="none" stroke="#dbeafe" stroke-width="2"/>
   </g>
   <g filter="url(#s)">
+    <g class="node node-a">
     <rect x="120" y="116" width="160" height="86" rx="18" fill="#fff" stroke="#dbeafe"/>
     <text x="200" y="151" text-anchor="middle" font-family="PingFang SC, Arial" font-size="18" font-weight="800" fill="#0f172a">技术边界</text>
     <text x="200" y="178" text-anchor="middle" font-family="PingFang SC, Arial" font-size="13" fill="#64748b">LLM · RAG · Agent</text>
+    </g>
+    <g class="node node-b">
     <rect x="312" y="72" width="160" height="86" rx="18" fill="#fff" stroke="#e9d5ff"/>
     <text x="392" y="107" text-anchor="middle" font-family="PingFang SC, Arial" font-size="18" font-weight="800" fill="#0f172a">产品判断</text>
     <text x="392" y="134" text-anchor="middle" font-family="PingFang SC, Arial" font-size="13" fill="#64748b">场景 · 取舍 · 兜底</text>
+    </g>
+    <g class="node node-c">
     <rect x="500" y="116" width="160" height="86" rx="18" fill="#fff" stroke="#bbf7d0"/>
     <text x="580" y="151" text-anchor="middle" font-family="PingFang SC, Arial" font-size="18" font-weight="800" fill="#0f172a">评测闭环</text>
     <text x="580" y="178" text-anchor="middle" font-family="PingFang SC, Arial" font-size="13" fill="#64748b">GSB · Badcase · AB</text>
+    </g>
+    <g class="node node-d">
     <rect x="688" y="72" width="160" height="86" rx="18" fill="#fff" stroke="#fed7aa"/>
     <text x="768" y="107" text-anchor="middle" font-family="PingFang SC, Arial" font-size="18" font-weight="800" fill="#0f172a">商业化</text>
     <text x="768" y="134" text-anchor="middle" font-family="PingFang SC, Arial" font-size="13" fill="#64748b">成本 · 定价 · 增长</text>
+    </g>
   </g>
   <g>
-    <path d="M280 158h30" stroke="url(#g)" stroke-width="4" stroke-linecap="round"/>
-    <path d="M472 116c24 0 18 42 28 42" stroke="url(#g)" stroke-width="4" stroke-linecap="round" fill="none"/>
-    <path d="M660 158c20 0 8-42 28-42" stroke="url(#g)" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path class="link" d="M280 158h30" stroke="url(#g)" stroke-width="4" stroke-linecap="round"/>
+    <path class="link" d="M472 116c24 0 18 42 28 42" stroke="url(#g)" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path class="link" d="M660 158c20 0 8-42 28-42" stroke="url(#g)" stroke-width="4" stroke-linecap="round" fill="none"/>
   </g>
   <g filter="url(#s)">
     <rect x="356" y="232" width="248" height="70" rx="24" fill="url(#g)"/>

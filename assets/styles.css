@@ -93,16 +93,16 @@ textarea, input { color: var(--ink); }
 .hero-copy::before {
   content: "";
   position: absolute;
-  inset: 8px 2% -6px;
-  border-radius: 36px;
+  left: 50%;
+  top: 48%;
+  width: min(760px, 92vw);
+  height: 280px;
+  border-radius: 50%;
   background:
-    linear-gradient(180deg, rgba(255,255,255,.48), rgba(255,255,255,.18)),
-    radial-gradient(circle at 50% 10%, rgba(255,255,255,.74), transparent 58%);
-  border: 1px solid rgba(255,255,255,.56);
-  box-shadow: 0 24px 80px rgba(15, 23, 42, .055), inset 0 1px 0 rgba(255,255,255,.72);
-  backdrop-filter: blur(8px) saturate(1.12);
-  -webkit-backdrop-filter: blur(8px) saturate(1.12);
-  mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
+    radial-gradient(ellipse at center, rgba(255,255,255,.88) 0%, rgba(255,255,255,.56) 36%, rgba(255,255,255,.18) 62%, transparent 76%),
+    radial-gradient(ellipse at 45% 52%, rgba(219,234,254,.36), transparent 64%);
+  filter: blur(18px);
+  transform: translate(-50%, -50%);
   z-index: -1;
 }
 @keyframes auroraDrift {
@@ -344,7 +344,7 @@ footer { margin-top: 80px; border-top: 1px solid var(--line); padding: 36px 0; t
   .hero-art { opacity: .08; top: 18px; transform: translateY(0) scale(1.18); }
   .hero .wrap { padding-top: 0; }
   .hero-copy { padding: 22px 8px 12px; }
-  .hero-copy::before { inset: 4px 0 -4px; border-radius: 28px; }
+  .hero-copy::before { width: 104vw; height: 220px; }
   h1 { font-size: calc(clamp(34px, 11vw, 50px) * var(--fscale)); }
   .sub { font-size: calc(14.5px * var(--fscale)); }
   .stats { display: grid; grid-template-columns: 1fr 1fr; }

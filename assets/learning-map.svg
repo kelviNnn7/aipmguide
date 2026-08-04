@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 360" role="img" aria-labelledby="title desc">
+  <title id="title">AI产品经理学习地图</title>
+  <desc id="desc">技术、产品、评估、商业和协作五条能力线汇聚到面试表达。</desc>
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#2563eb"/>
+      <stop offset=".55" stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#0d9488"/>
+    </linearGradient>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#0f172a" flood-opacity=".12"/>
+    </filter>
+  </defs>
+  <rect width="960" height="360" fill="none"/>
+  <g opacity=".45">
+    <path d="M112 257C232 124 338 252 462 136s232-68 386 40" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+    <path d="M82 178c142-82 270 90 405 12s234-80 384 18" fill="none" stroke="#dbeafe" stroke-width="2"/>
+  </g>
+  <g filter="url(#s)">
+    <rect x="120" y="116" width="160" height="86" rx="18" fill="#fff" stroke="#dbeafe"/>
+    <text x="200" y="151" text-anchor="middle" font-family="PingFang SC, Arial" font-size="18" font-weight="800" fill="#0f172a">技术边界</text>
+    <text x="200" y="178" text-anchor="middle" font-family="PingFang SC, Arial" font-size="13" fill="#64748b">LLM · RAG · Agent</text>
+    <rect x="312" y="72" width="160" height="86" rx="18" fill="#fff" stroke="#e9d5ff"/>
+    <text x="392" y="107" text-anchor="middle" font-family="PingFang SC, Arial" font-size="18" font-weight="800" fill="#0f172a">产品判断</text>
+    <text x="392" y="134" text-anchor="middle" font-family="PingFang SC, Arial" font-size="13" fill="#64748b">场景 · 取舍 · 兜底</text>
+    <rect x="500" y="116" width="160" height="86" rx="18" fill="#fff" stroke="#bbf7d0"/>
+    <text x="580" y="151" text-anchor="middle" font-family="PingFang SC, Arial" font-size="18" font-weight="800" fill="#0f172a">评测闭环</text>
+    <text x="580" y="178" text-anchor="middle" font-family="PingFang SC, Arial" font-size="13" fill="#64748b">GSB · Badcase · AB</text>
+    <rect x="688" y="72" width="160" height="86" rx="18" fill="#fff" stroke="#fed7aa"/>
+    <text x="768" y="107" text-anchor="middle" font-family="PingFang SC, Arial" font-size="18" font-weight="800" fill="#0f172a">商业化</text>
+    <text x="768" y="134" text-anchor="middle" font-family="PingFang SC, Arial" font-size="13" fill="#64748b">成本 · 定价 · 增长</text>
+  </g>
+  <g>
+    <path d="M280 158h30" stroke="url(#g)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M472 116c24 0 18 42 28 42" stroke="url(#g)" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M660 158c20 0 8-42 28-42" stroke="url(#g)" stroke-width="4" stroke-linecap="round" fill="none"/>
+  </g>
+  <g filter="url(#s)">
+    <rect x="356" y="232" width="248" height="70" rx="24" fill="url(#g)"/>
+    <text x="480" y="263" text-anchor="middle" font-family="PingFang SC, Arial" font-size="20" font-weight="900" fill="#fff">面试表达</text>
+    <text x="480" y="287" text-anchor="middle" font-family="PingFang SC, Arial" font-size="13" fill="#e0f2fe">作品证明 · 框架证明 · 细节证明</text>
+  </g>
+  <path d="M200 204c58 56 120 68 156 62M392 160c24 42 42 70 66 72M580 204c-20 34-42 48-78 56M768 160c-70 72-116 96-164 106" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="6 8" opacity=".8"/>
+</svg>

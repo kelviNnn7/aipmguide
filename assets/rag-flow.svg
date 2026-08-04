@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 280" role="img" aria-labelledby="title desc">
+  <title id="title">RAG链路图</title>
+  <desc id="desc">文档经过切分、向量化、检索、重排序、拼入提示词，最终生成带引用的答案。</desc>
+  <defs>
+    <linearGradient id="blue" x1="0" x2="1">
+      <stop stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+  <rect width="880" height="280" rx="28" fill="#f8fafc"/>
+  <g font-family="PingFang SC, Arial">
+    <g transform="translate(32 74)">
+      <rect width="110" height="82" rx="16" fill="#fff" stroke="#dbeafe"/>
+      <text x="55" y="36" text-anchor="middle" font-size="17" font-weight="800" fill="#0f172a">文档</text>
+      <text x="55" y="60" text-anchor="middle" font-size="12" fill="#64748b">私有知识</text>
+    </g>
+    <g transform="translate(178 74)">
+      <rect width="110" height="82" rx="16" fill="#fff" stroke="#dbeafe"/>
+      <text x="55" y="36" text-anchor="middle" font-size="17" font-weight="800" fill="#0f172a">切分</text>
+      <text x="55" y="60" text-anchor="middle" font-size="12" fill="#64748b">Chunk</text>
+    </g>
+    <g transform="translate(324 74)">
+      <rect width="110" height="82" rx="16" fill="#fff" stroke="#dbeafe"/>
+      <text x="55" y="36" text-anchor="middle" font-size="17" font-weight="800" fill="#0f172a">向量化</text>
+      <text x="55" y="60" text-anchor="middle" font-size="12" fill="#64748b">Embedding</text>
+    </g>
+    <g transform="translate(470 74)">
+      <rect width="110" height="82" rx="16" fill="#fff" stroke="#bbf7d0"/>
+      <text x="55" y="36" text-anchor="middle" font-size="17" font-weight="800" fill="#0f172a">检索</text>
+      <text x="55" y="60" text-anchor="middle" font-size="12" fill="#64748b">Hybrid Search</text>
+    </g>
+    <g transform="translate(616 74)">
+      <rect width="110" height="82" rx="16" fill="#fff" stroke="#bbf7d0"/>
+      <text x="55" y="36" text-anchor="middle" font-size="17" font-weight="800" fill="#0f172a">重排序</text>
+      <text x="55" y="60" text-anchor="middle" font-size="12" fill="#64748b">Rerank</text>
+    </g>
+    <g transform="translate(762 74)">
+      <rect width="86" height="82" rx="16" fill="url(#blue)"/>
+      <text x="43" y="36" text-anchor="middle" font-size="17" font-weight="800" fill="#fff">生成</text>
+      <text x="43" y="60" text-anchor="middle" font-size="12" fill="#dbeafe">引用</text>
+    </g>
+    <path d="M145 115h26M291 115h26M437 115h26M583 115h26M729 115h26" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arrow)"/>
+    <g transform="translate(252 198)">
+      <rect width="376" height="42" rx="21" fill="#fff" stroke="#e2e8f0"/>
+      <text x="188" y="27" text-anchor="middle" font-size="14" font-weight="700" fill="#334155">产品经理关注：召回率、引用可信度、Badcase 回流、延迟和成本</text>
+    </g>
+    <path d="M671 157c-50 46-118 56-230 48" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="7 7"/>
+  </g>
+</svg>
